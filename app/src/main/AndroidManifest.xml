@@ -2,7 +2,47 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eng.chula.se.hygeia">
 
+    <!-- Camera -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature android:name="android.hardware.camera.front"/>
+    <uses-feature android:name="android.hardware.camera.front.autofocus"/>
+
+    <!-- Storage -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- Account -->
+    <!-- USE_CREDENTIALS for Google+ login -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- Phone State -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" android:required="false" />
+
+    <!-- Network -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" android:required="false" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" android:required="false" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" android:required="false" />
+
+    <!-- Location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:required="false" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" android:required="false" />
+
+    <!-- Alert -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" android:required="false" />
+    <uses-permission android:name="android.permission.GET_TASKS" android:required="false" />
+
+    <!--<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" android:required="false" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" android:required="false" />-->
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="false" />
 
     <application
         android:allowBackup="true"
@@ -11,15 +51,106 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.SplashScreen.HelloHygeiaSplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.ProfileActivity"></activity>
+
+        <activity android:name="com.facebook.FacebookActivity" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- Firebase Login -->
+        <activity android:name="com.eng.chula.se.hygeia.activities.Login.FirebaseLoginProfileMainActivity" />
+        <activity android:name="com.eng.chula.se.hygeia.activities.Login.FirebaseLoginProfileActivity" />
+        <activity android:name="com.eng.chula.se.hygeia.activities.Registration.FirebaseSignUpActivity" />
+
+        <!-- Manage User -->
+        <activity android:name="com.eng.chula.se.hygeia.activities.ManageUserActivity" />
+
+        <activity android:name=".activities.Login.ProfileActivity"></activity>
+
+        <!-- Intro Hygeia -->
+        <activity
+            android:name="com.eng.chula.se.hygeia.IntroSliderHygeia"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Main Login -->
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.LoginMainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Line Login -->
+        <activity android:name="com.eng.chula.se.hygeia.LineLogin.MainLoginLineActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity android:name="com.eng.chula.se.hygeia.LineLogin.PostLoginActivity"
+            android:label="User Information">
+        </activity>
+
+        <!-- Login Email and Password -->
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.Login.LoginEmailAndPasswordActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Login Facebook -->
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.Login.LoginFacebookActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Login Google -->
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.Login.LoginGoogleActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Show Profile from Firebase-->
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.Homepage.FirebaseProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Edit Profile from Firebase-->
+        <activity android:name="com.eng.chula.se.hygeia.activities.Login.FirebaseEditProfileActivity" />
+
+        <!-- Add Data of Firebase -->
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.AddFirebaseDataActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Update Data of Firebase -->
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.UpdateAndDeleteFirebaseDataActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Update Notification of Firebase -->
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.History.UpdateNotificationFirebaseDataActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Send Email -->
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.History.SendEmailBackgroundActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

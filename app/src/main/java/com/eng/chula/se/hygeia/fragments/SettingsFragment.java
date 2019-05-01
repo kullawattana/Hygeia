@@ -15,8 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.eng.chula.se.hygeia.R;
-import com.eng.chula.se.hygeia.activities.LoginActivity;
-import com.eng.chula.se.hygeia.activities.MainActivity;
+import com.eng.chula.se.hygeia.activities.LoginMainActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
 import com.eng.chula.se.hygeia.models.LoginResponse;
@@ -151,7 +150,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private void logout() {
         SharedPrefManager.getInstance(getActivity()).clear();
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        Intent intent = new Intent(getActivity(), LoginMainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
@@ -173,7 +172,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         if (!response.body().isErr()) {
                             SharedPrefManager.getInstance(getActivity()).clear();
                             SharedPrefManager.getInstance(getActivity()).clear();
-                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            Intent intent = new Intent(getActivity(), LoginMainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }

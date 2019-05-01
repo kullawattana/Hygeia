@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryBackground"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.Pharmacy.ArticleBoardActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,9 +49,8 @@
         <EditText
             android:id="@+id/editTextArticleContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_name"
             android:drawablePadding="5dp"
+            android:layout_height="400dp"
             android:hint="Article Content"
             android:inputType="textPersonName" />
 
