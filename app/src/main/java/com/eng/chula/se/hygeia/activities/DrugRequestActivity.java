@@ -97,12 +97,12 @@ public class DrugRequestActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            /*case R.id.buttonSignUp:
+            case R.id.buttonDrugRequest:
                 drugRequest();
                 break;
             case R.id.textViewLogin:
                 startActivity(new Intent(this, LoginMainActivity.class));
-                break;*/
+                break;
         }
     }
 }
