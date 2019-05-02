@@ -175,6 +175,11 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.Notification.MainEmailNotificationActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

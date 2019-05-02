@@ -20,10 +20,10 @@ import android.view.View;
 import android.widget.ImageView;
 import com.eng.chula.se.hygeia.R;
 import com.eng.chula.se.hygeia.activities.DrugRequest.MainStepperActivity;
-import com.eng.chula.se.hygeia.activities.DrugRequestActivity;
 import com.eng.chula.se.hygeia.activities.History.SendEmailBackgroundActivity;
 import com.eng.chula.se.hygeia.activities.History.UpdateNotificationFirebaseDataActivity;;
 import com.eng.chula.se.hygeia.activities.ManageUserActivity;
+import com.eng.chula.se.hygeia.activities.Notification.MainEmailNotificationActivity;
 import com.eng.chula.se.hygeia.activities.Pharmacy.PharmacyFormActivity;
 import com.eng.chula.se.hygeia.fragments.FirebaseProfileFragment;
 
@@ -132,13 +132,13 @@ public class FirebaseProfileActivity extends AppCompatActivity{
                 } else if (id == R.id.nav_manage_user) {
                     Intent manageUserActivity = new Intent(getApplicationContext(), ManageUserActivity.class);
                     startActivity(manageUserActivity);
-                } else if(id == R.id.nav_history){              //ตรวจสอบ History
+                } else if(id == R.id.nav_history){
                     Intent manageUserActivity = new Intent(getApplicationContext(), UpdateNotificationFirebaseDataActivity.class);
                     startActivity(manageUserActivity);
-                } else if (id == R.id.nav_send_email) {         //ส่ง E-mail
+                } else if (id == R.id.nav_send_email) {
                     Intent manageUserActivity = new Intent(getApplicationContext(), SendEmailBackgroundActivity.class);
                     startActivity(manageUserActivity);
-                } else if (id == R.id.nav_chat) {         //ส่ง E-mail
+                } else if (id == R.id.nav_chat) {
                     Intent launchIntent = getPackageManager().getLaunchIntentForPackage("jp.naver.line.android");
                     startActivity(launchIntent);
                 } else if (id == R.id.nav_logout) {

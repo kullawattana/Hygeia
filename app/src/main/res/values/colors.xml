@@ -5,14 +5,11 @@
     <color name="colorPrimaryBackground">#0886c7</color>
     <color name="colorAccent">#375290</color>
     <color name="colorFormBackground">#e4e4e4</color>
-
     <color name="blue">#ff59a9ff</color>
     <color name="orange">#ffff900d</color>
     <color name="bottom_background_color">#ffc4c2bc</color>
-
     <color name="polygonViewCircleStrokeColor">#ff59a9ff</color>
     <color name="polygonViewCircleBackground">#90e5f8ff</color>
-
     <color name="username0">#e21400</color>
     <color name="username1">#91580f</color>
     <color name="username2">#f8a700</color>
@@ -25,8 +22,6 @@
     <color name="username9">#3824aa</color>
     <color name="username10">#a700ff</color>
     <color name="username11">#d300e7</color>
-
-    <!--******************** BLE Sensor ******************************-->
     <color name="setting_bg_color">#00BBC1</color>
     <color name="white">#ffffffff</color>
     <color name="gray">#88000000</color>
@@ -35,14 +30,12 @@
     <color name="mise">#E3E3E3</color>
     <color name="dialog_bg">#d0ffffff</color>
     <color name="dialog_exception_bg">#ffffffff</color>
-
-    <!-- **************** CHANGE ******************** -->
     <color name="colorMild">#9d9c9c</color>
     <color name="colorDivider">#eae6e6</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
-
     <color name="proceed_disable_map">#DEDEDE</color>
     <color name="proceed_enable_map">#72D63A</color>
     <color name="colorWhite_map">#FFFFFF</color>
+    <color name="colorOrange">#F2B32A</color>
 </resources>
