@@ -76,7 +76,7 @@ public class MainStepperActivity extends AppCompatActivity {
         while (i <= 2) {
 
             final SteppersItem item = new SteppersItem();
-            item.setLabel("STEP"+i);
+            item.setLabel("STEP : "+i);
             item.setPositiveButtonEnable(i % 2 != 0);
 
             if(i == 0) {

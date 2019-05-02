@@ -1,6 +1,7 @@
 package com.eng.chula.se.hygeia.activities.Homepage;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.widget.ImageView;
 import com.eng.chula.se.hygeia.R;
 import com.eng.chula.se.hygeia.activities.DrugRequest.MainStepperActivity;
+import com.eng.chula.se.hygeia.activities.DrugRequestActivity;
 import com.eng.chula.se.hygeia.activities.History.SendEmailBackgroundActivity;
 import com.eng.chula.se.hygeia.activities.History.UpdateNotificationFirebaseDataActivity;;
 import com.eng.chula.se.hygeia.activities.ManageUserActivity;
@@ -30,6 +32,8 @@ public class FirebaseProfileActivity extends AppCompatActivity{
     private FragmentManager fragmentManager;
 
     private Fragment fragment = null;
+
+    final String MY_STATE = "MY_STATE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +54,15 @@ public class FirebaseProfileActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 try {
+
+                    SharedPreferences.Editor editor = getSharedPreferences(MY_STATE, MODE_PRIVATE).edit();
+                    editor.clear();
+                    editor.apply();
+
                     Intent mainActivityReqDrug = new Intent(getApplicationContext(), MainStepperActivity.class);
                     mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                     getApplicationContext().startActivity(mainActivityReqDrug);
+
                 } catch (Exception e) {
                     Log.e("FirebaseProfileActivity", e.toString());
                 }
