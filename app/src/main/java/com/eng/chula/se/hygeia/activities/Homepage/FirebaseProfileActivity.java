@@ -18,9 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import com.eng.chula.se.hygeia.R;
-import com.eng.chula.se.hygeia.activities.DrugRequestActivity;
-import com.eng.chula.se.hygeia.activities.ManageUserActivity;
+import com.eng.chula.se.hygeia.activities.DrugRequest.MainStepperActivity;
 import com.eng.chula.se.hygeia.activities.History.SendEmailBackgroundActivity;
+import com.eng.chula.se.hygeia.activities.History.UpdateNotificationFirebaseDataActivity;;
+import com.eng.chula.se.hygeia.activities.ManageUserActivity;
+import com.eng.chula.se.hygeia.activities.Pharmacy.PharmacyFormActivity;
 import com.eng.chula.se.hygeia.fragments.FirebaseProfileFragment;
 
 public class FirebaseProfileActivity extends AppCompatActivity{
@@ -42,13 +44,13 @@ public class FirebaseProfileActivity extends AppCompatActivity{
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        //สั่งยา
-        ImageView imgReqDrug = (ImageView) findViewById(R.id.img_add_profile);
+        //Drug Request
+        ImageView imgReqDrug = (ImageView) findViewById(R.id.img_drug_request);
         imgReqDrug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    Intent mainActivityReqDrug = new Intent(getApplicationContext(), DrugRequestActivity.class);
+                    Intent mainActivityReqDrug = new Intent(getApplicationContext(), MainStepperActivity.class);
                     mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                     getApplicationContext().startActivity(mainActivityReqDrug);
                 } catch (Exception e) {
@@ -57,24 +59,9 @@ public class FirebaseProfileActivity extends AppCompatActivity{
             }
         });
 
-        //ส่ง Email
-        ImageView imgSendEmail = (ImageView) findViewById(R.id.img_wearable);
-        imgSendEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    Intent sensorDeviceScanActivity = new Intent(getApplicationContext(), SendEmailBackgroundActivity.class);
-                    sensorDeviceScanActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                    getApplicationContext().startActivity(sensorDeviceScanActivity);
-                } catch (Exception e) {
-                    Log.e("FirebaseProfileActivity", e.toString());
-                }
-            }
-        });
-
         //Chat
-        ImageView imgChatToPharma = (ImageView) findViewById(R.id.img_fall_detection);
-        imgChatToPharma.setOnClickListener(new View.OnClickListener() {
+        ImageView imgSendEmail = (ImageView) findViewById(R.id.img_chat);
+        imgSendEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -86,13 +73,30 @@ public class FirebaseProfileActivity extends AppCompatActivity{
             }
         });
 
-        //ตรวจสอบ Location
-        ImageView imgLocation = (ImageView) findViewById(R.id.img_chat);
+        //Pharmacy Checkup
+        ImageView imgChatToPharma = (ImageView) findViewById(R.id.img_pharmacy_checkup);
+        imgChatToPharma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent mainActivityReqDrug = new Intent(getApplicationContext(), PharmacyFormActivity.class);
+                    mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    getApplicationContext().startActivity(mainActivityReqDrug);
+                } catch (Exception e) {
+                    Log.e("FirebaseProfileActivity", e.toString());
+                }
+            }
+        });
+
+        //History
+        ImageView imgLocation = (ImageView) findViewById(R.id.img_history);
         imgLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-
+                    Intent mainActivityReqDrug = new Intent(getApplicationContext(), UpdateNotificationFirebaseDataActivity.class);
+                    mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    getApplicationContext().startActivity(mainActivityReqDrug);
                 } catch (Exception e) {
                     Log.e("FirebaseProfileActivity", e.toString());
                 }
@@ -113,26 +117,21 @@ public class FirebaseProfileActivity extends AppCompatActivity{
             public boolean onNavigationItemSelected(MenuItem item) {
                 int id = item.getItemId();
 
-                if (id == R.id.nav_activity) {
+                if (id == R.id.nav_manage_user) {
                     fragment = new FirebaseProfileFragment();
-                } else if (id == R.id.nav_edit_data) {          //Profile
-                    //Intent mainActivityQRCodeScanner = new Intent(getApplicationContext(), MainActivityQRCodeScanner.class);
-                    //mainActivityQRCodeScanner.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                    //getApplicationContext().startActivity(mainActivityQRCodeScanner);
-                } else if(id == R.id.nav_history){              //ตรวจสอบ History
-
-                } else if (id == R.id.nav_send_email) {         //ส่ง E-mail
-
-                }
-
-/*                else if (id == R.id.nav_chat) {               //Chat
-
-                } else if (id == R.id.nav_settings) {
+                } else if (id == R.id.nav_manage_user) {
                     Intent manageUserActivity = new Intent(getApplicationContext(), ManageUserActivity.class);
                     startActivity(manageUserActivity);
-                } */
-
-                else if (id == R.id.nav_logout) {
+                } else if(id == R.id.nav_history){              //ตรวจสอบ History
+                    Intent manageUserActivity = new Intent(getApplicationContext(), UpdateNotificationFirebaseDataActivity.class);
+                    startActivity(manageUserActivity);
+                } else if (id == R.id.nav_send_email) {         //ส่ง E-mail
+                    Intent manageUserActivity = new Intent(getApplicationContext(), SendEmailBackgroundActivity.class);
+                    startActivity(manageUserActivity);
+                } else if (id == R.id.nav_chat) {         //ส่ง E-mail
+                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage("jp.naver.line.android");
+                    startActivity(launchIntent);
+                } else if (id == R.id.nav_logout) {
                     finish();
                     System.exit(0);
                 }

@@ -82,7 +82,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buttonPharmacyForm"
+            android:id="@+id/buttonDrugRequest"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

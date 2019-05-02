@@ -49,6 +49,7 @@ public class FirebaseLoginProfileActivity extends AppCompatActivity {
         }
 
         //TEST TODO
+        //mAuth = FirebaseAuth.getInstance();
         mAuth = ((FirebaseApplication)getApplication()).getFirebaseAuth();
         ((FirebaseApplication)getApplication()).checkUserLogin(FirebaseLoginProfileActivity.this);
 
@@ -98,14 +99,14 @@ public class FirebaseLoginProfileActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        //mAuth.addAuthStateListener(((FirebaseApplication)getApplication()).mAuthListener);
+        mAuth.addAuthStateListener(((FirebaseApplication)getApplication()).mAuthListener);
     }
 
     @Override
     public void onStop() {
         super.onStop();
         if (((FirebaseApplication)getApplication()).mAuthListener != null) {
-            //mAuth.removeAuthStateListener(((FirebaseApplication)getApplication()).mAuthListener);
+            mAuth.removeAuthStateListener(((FirebaseApplication)getApplication()).mAuthListener);
         }
     }
 }

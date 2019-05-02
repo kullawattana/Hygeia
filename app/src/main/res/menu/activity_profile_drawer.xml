@@ -3,7 +3,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_activity"
+            android:id="@+id/nav_manage_user"
             android:icon="@drawable/ic_manage_user_icon"
             android:title="@string/menu_activity" />
         <item
@@ -11,26 +11,18 @@
             android:icon="@drawable/ic_notification_icon"
             android:title="@string/menu_history" />
         <item
-            android:id="@+id/nav_edit_data"
+            android:id="@+id/nav_send_email"
             android:icon="@drawable/ic_email"
             android:title="@string/menu_edit_data" />
         <item
-            android:id="@+id/nav_send_email"
+            android:id="@+id/nav_chat"
             android:icon="@drawable/ic_icon_chat"
             android:title="@string/menu_send_email" />
-<!--        <item
-            android:id="@+id/nav_chat"
-            android:icon="@drawable/wearable_icon"
-            android:title="@string/menu_chat_app" />-->
 
     </group>
 
     <item android:title="Settings">
         <menu>
-<!--            <item
-                android:id="@+id/nav_settings"
-                android:icon="@android:drawable/ic_menu_compass"
-                android:title="@string/menu_settings" />-->
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_logout_system_icon"

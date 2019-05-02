@@ -29,7 +29,9 @@ import com.eng.chula.se.hygeia.Firebase.FirebaseStorageHelper;
 import com.eng.chula.se.hygeia.Helper.Helper;
 import com.eng.chula.se.hygeia.Helper.SimpleDividerItemDecoration;
 import com.eng.chula.se.hygeia.R;
+import com.eng.chula.se.hygeia.activities.Homepage.FirebaseProfileActivity;
 import com.eng.chula.se.hygeia.activities.Login.FirebaseEditProfileActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class FirebaseProfileFragment extends Fragment {
 
@@ -86,11 +88,12 @@ public class FirebaseProfileFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
 
-        ((FirebaseApplication)getActivity().getApplication()).getFirebaseAuth();
+        /*((FirebaseApplication) getActivity().getApplication()).getFirebaseAuth();
         id = ((FirebaseApplication)getActivity().getApplication()).getFirebaseUserAuthenticateId();
 
         FirebaseDatabaseHelper firebaseDatabaseHelper = new FirebaseDatabaseHelper();
-        firebaseDatabaseHelper.isUserKeyExist(id, getActivity(), recyclerView);
+        firebaseDatabaseHelper.isUserKeyExist(id, getActivity(), recyclerView);*/
+
         return view;
     }
 

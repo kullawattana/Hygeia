@@ -150,6 +150,31 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.DrugRequest.MainStepperActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.Pharmacy.PharmacyFormActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.Location.MyLocationUsingHelper"
+            android:label="MyLocation"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name="com.eng.chula.se.hygeia.activities.Location.MyLocationUsingLocationAPI"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.DrugRequestActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,30 +1,24 @@
 package com.eng.chula.se.hygeia.activities.Login;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eng.chula.se.hygeia.R;
 import com.eng.chula.se.hygeia.activities.BaseActivity;
+import com.eng.chula.se.hygeia.activities.Homepage.FirebaseProfileActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -72,12 +66,10 @@ public class LoginGoogleActivity extends BaseActivity implements GoogleApiClient
 		signInButton.setOnClickListener(this);
 
 		findViewById(R.id.sign_out_button).setOnClickListener(this);
-		findViewById(R.id.disconnect_button).setOnClickListener(this);
 
 		// Configure Google Sign In
 		GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-				//.requestIdToken(getString(R.string.default_web_client_id))
-				.requestIdToken("")
+				.requestIdToken(getString(R.string.default_web_client_id))
 				.requestEmail()
 				.build();
 
@@ -99,18 +91,6 @@ public class LoginGoogleActivity extends BaseActivity implements GoogleApiClient
 				updateUI(user);
 			}
 		};
-
-		Button buttonhowtopage = (Button) findViewById(R.id.enter_to_main);
-		buttonhowtopage.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-
-				//Next ไปที่หน้าหลัก หลังจาก Login ผ่าน
-				Intent fdActivityClass = new Intent(getApplicationContext(), FirebaseLoginProfileMainActivity.class);
-				startActivity(fdActivityClass);
-			}
-		});
 	}
 
 	@Override
@@ -237,19 +217,6 @@ public class LoginGoogleActivity extends BaseActivity implements GoogleApiClient
 			mTextViewProfile.append("\n\n");
 			mTextViewProfile.append("Firebase ID: " + user.getUid());
 
-			//*******************Gen QR Code*****************************
-			String myAndroidDeviceId = "";
-			TelephonyManager mTelephony = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-			if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-				return;
-			}
-
-			if (mTelephony.getDeviceId() != null) {
-				myAndroidDeviceId = mTelephony.getDeviceId();
-			} else {
-				myAndroidDeviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-			}
-
 			String MY_DISPLAY_NAME = null;
 			String MY_GET_EMAIL = null;
 			SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);
@@ -258,8 +225,14 @@ public class LoginGoogleActivity extends BaseActivity implements GoogleApiClient
 			prefsEditor.putString(MY_GET_EMAIL, user.getEmail());
 			prefsEditor.commit();
 
-			findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-			findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+			findViewById(R.id.enter_to_main).setVisibility(View.VISIBLE);
+			findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
+			findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+			findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+
+			Intent fdActivityClass = new Intent(getApplicationContext(), FirebaseProfileActivity.class);
+			startActivity(fdActivityClass);
+
 		} else {
 			mImageView.getLayoutParams().width = (getResources().getDisplayMetrics().widthPixels / 100) * 64;
 			mImageView.setImageResource(R.mipmap.firebaselogoicon);
@@ -284,12 +257,11 @@ public class LoginGoogleActivity extends BaseActivity implements GoogleApiClient
 				break;
 			case R.id.enter_to_main:
 				//Home Page
+				Intent fdActivityClass = new Intent(getApplicationContext(), FirebaseLoginProfileMainActivity.class);
+				startActivity(fdActivityClass);
 				break;
 			case R.id.sign_out_button:
 				signOut();
-				break;
-			case R.id.disconnect_button:
-				revokeAccess();
 				break;
 		}
 	}

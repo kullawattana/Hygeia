@@ -35,7 +35,7 @@ public class DrugRequestActivity extends AppCompatActivity implements View.OnCli
         editTextTopic = (EditText) findViewById(R.id.editTextTopic);
         editTextAttachment = (EditText) findViewById(R.id.editTextAttachment);
 
-        //findViewById(R.id.buttonDrugRequest).setOnClickListener(this);
+        findViewById(R.id.buttonDrugRequest).setOnClickListener(this);
     }
 
 
@@ -43,11 +43,11 @@ public class DrugRequestActivity extends AppCompatActivity implements View.OnCli
     protected void onStart() {
         super.onStart();
 
-        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+        /*if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
             Intent intent = new Intent(this, LoginMainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-        }
+        }*/
     }
 
     private void drugRequest() {

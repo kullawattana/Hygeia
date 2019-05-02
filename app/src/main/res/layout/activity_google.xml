@@ -46,6 +46,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:text="@string/enter_to_main"
+			android:visibility="visible"
 			android:theme="@style/ThemeOverlay.MyDarkButton" />
 
 		<Button
@@ -55,15 +56,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:text="@string/sign_out"
-			android:theme="@style/ThemeOverlay.MyDarkButton"/>
-
-		<Button
-			android:id="@+id/disconnect_button"
-			style="?android:attr/button"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="@string/disconnect"
+			android:visibility="visible"
 			android:theme="@style/ThemeOverlay.MyDarkButton"/>
 
 	</LinearLayout>
