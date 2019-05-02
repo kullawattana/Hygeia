@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <declare-styleable name="SensorPasswordInputView">
         <attr name="pivBorderColor" format="color"/>
         <attr name="pivBorderWidth" format="dimension"/>
@@ -10,5 +9,4 @@
         <attr name="pivPasswordRadius" format="dimension"/>
         <attr name="pivPasswordLength" format="integer"/>
     </declare-styleable>
-
 </resources>
