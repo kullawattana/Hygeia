@@ -31,8 +31,8 @@ public class MainEmailNotificationActivity extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
-        EmailData mEmail = new EmailData("Sam", "Weekend adventure",
-                "Let's go fishing with John and others. We will do some barbecue and have soo much fun",
+        EmailData mEmail = new EmailData("Announcement", "Test",
+                "Test",
                 "10:42am");
         mEmailData.add(mEmail);
 
