@@ -108,7 +108,7 @@ public class MainStepperActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         item.setPositiveButtonEnable(true);
 
-                        if(item.getLabel().contains("STEP0")){
+                        if(item.getLabel().contains("STEP : 0")){
                             Intent mainActivityReqDrug = new Intent(getApplicationContext(), DrugRequestActivity.class);
                             mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                             getApplicationContext().startActivity(mainActivityReqDrug);
