@@ -15,4 +15,10 @@
         android:visible="true"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/action_step_3" android:orderInCategory="100"
+        android:title="Skip to step 3" app:showAsAction="never" />
+
+    <item android:id="@+id/action_step_5" android:orderInCategory="100"
+        android:title="Skip to step 5" app:showAsAction="never" />
+
 </menu>

@@ -18,7 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import com.eng.chula.se.hygeia.R;
-import com.eng.chula.se.hygeia.activities.DrugRequest.DrugRequestActivity;
+import com.eng.chula.se.hygeia.activities.DrugRequestActivity;
 import com.eng.chula.se.hygeia.activities.ManageUserActivity;
 import com.eng.chula.se.hygeia.activities.History.SendEmailBackgroundActivity;
 import com.eng.chula.se.hygeia.fragments.FirebaseProfileFragment;
@@ -123,12 +123,16 @@ public class FirebaseProfileActivity extends AppCompatActivity{
 
                 } else if (id == R.id.nav_send_email) {         //ส่ง E-mail
 
-                } else if (id == R.id.nav_chat) {               //Chat
+                }
+
+/*                else if (id == R.id.nav_chat) {               //Chat
 
                 } else if (id == R.id.nav_settings) {
                     Intent manageUserActivity = new Intent(getApplicationContext(), ManageUserActivity.class);
                     startActivity(manageUserActivity);
-                } else if (id == R.id.nav_logout) {
+                } */
+
+                else if (id == R.id.nav_logout) {
                     finish();
                     System.exit(0);
                 }

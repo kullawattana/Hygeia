@@ -41,7 +41,7 @@ public class DrugRecommendationActivity extends AppCompatActivity implements Vie
         editTextReceiverName = (EditText) findViewById(R.id.editTextReceiverName);
         editTextCreateDate = (EditText) findViewById(R.id.editTextCreateDate);
 
-        findViewById(R.id.buttonDrugRecommendation).setOnClickListener(this);
+        findViewById(R.id.buttonDrugRecomendationForm).setOnClickListener(this);
     }
 
 
@@ -125,7 +125,7 @@ public class DrugRecommendationActivity extends AppCompatActivity implements Vie
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonSignUp:
+            case R.id.buttonDrugRecomendationForm:
                 drugRecommendation();
                 break;
             case R.id.textViewLogin:

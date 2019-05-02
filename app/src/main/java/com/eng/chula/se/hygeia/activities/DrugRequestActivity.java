@@ -1,4 +1,4 @@
-package com.eng.chula.se.hygeia.activities.DrugRequest;
+package com.eng.chula.se.hygeia.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.eng.chula.se.hygeia.R;
-import com.eng.chula.se.hygeia.activities.LoginMainActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
 import com.eng.chula.se.hygeia.storage.SharedPrefManager;
@@ -36,7 +35,7 @@ public class DrugRequestActivity extends AppCompatActivity implements View.OnCli
         editTextTopic = (EditText) findViewById(R.id.editTextTopic);
         editTextAttachment = (EditText) findViewById(R.id.editTextAttachment);
 
-        findViewById(R.id.buttonDrugRequest).setOnClickListener(this);
+        //findViewById(R.id.buttonDrugRequest).setOnClickListener(this);
     }
 
 
@@ -98,12 +97,12 @@ public class DrugRequestActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonSignUp:
+            /*case R.id.buttonSignUp:
                 drugRequest();
                 break;
             case R.id.textViewLogin:
                 startActivity(new Intent(this, LoginMainActivity.class));
-                break;
+                break;*/
         }
     }
 }

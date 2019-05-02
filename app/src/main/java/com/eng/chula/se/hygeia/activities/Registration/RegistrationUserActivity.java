@@ -146,7 +146,7 @@ public class RegistrationUserActivity extends AppCompatActivity implements View.
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonSignUp:
+            case R.id.buttonUserRegistrationForm:
                 registrationForm();
                 break;
             case R.id.textViewLogin:

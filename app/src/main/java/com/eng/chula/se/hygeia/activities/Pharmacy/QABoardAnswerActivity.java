@@ -37,7 +37,7 @@ public class QABoardAnswerActivity extends AppCompatActivity implements View.OnC
         editTextAskerAccountId = (EditText) findViewById(R.id.editTextAskerAccountId);
         editTextAskerName = (EditText) findViewById(R.id.editTextAskerName);
 
-        findViewById(R.id.buttonQABoardAnswer).setOnClickListener(this);
+        findViewById(R.id.buttonQAboardAnswer).setOnClickListener(this);
     }
 
 
@@ -106,7 +106,7 @@ public class QABoardAnswerActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonSignUp:
+            case R.id.buttonQAboardAnswer:
                 answerRequest();
                 break;
             case R.id.textViewLogin:

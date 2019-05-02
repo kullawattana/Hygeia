@@ -111,7 +111,7 @@ public class ArticleBoardActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonSignUp:
+            case R.id.buttonArticleBoard:
                 articleBoard();
                 break;
             case R.id.textViewLogin:

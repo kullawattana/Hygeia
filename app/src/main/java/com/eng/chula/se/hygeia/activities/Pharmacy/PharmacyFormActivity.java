@@ -104,7 +104,7 @@ public class PharmacyFormActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonSignUp:
+            case R.id.buttonPharmacyForm:
                 pharmacyForm();
                 break;
             case R.id.textViewLogin:

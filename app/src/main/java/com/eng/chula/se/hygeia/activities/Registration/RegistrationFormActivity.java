@@ -160,7 +160,7 @@ public class RegistrationFormActivity extends AppCompatActivity implements View.
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonSignUp:
+            case R.id.buttonRegistrationForm:
                 registrationForm();
                 break;
             case R.id.textViewLogin:

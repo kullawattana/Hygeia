@@ -65,7 +65,7 @@ public class MainActivityAddFirebaseData extends AppCompatActivity implements Vi
             addressEditText = (EditText)findViewById(R.id.address);
             telEditText = (EditText)findViewById(R.id.tel);
             emailEditText = (EditText)findViewById(R.id.email);
-            elderlyEditText = (EditText)findViewById(R.id.elderly);
+            //elderlyEditText = (EditText)findViewById(R.id.elderly);
             timeEditText = (EditText)findViewById(R.id.time);
 
             //PROGRESS

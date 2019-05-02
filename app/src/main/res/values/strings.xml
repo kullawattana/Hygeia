@@ -318,4 +318,7 @@
         <item>Sunday</item>
     </string-array>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment_second">Hello second blank fragment</string>
+
 </resources>
