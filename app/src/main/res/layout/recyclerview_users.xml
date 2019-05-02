@@ -18,21 +18,21 @@
                 android:id="@+id/textViewName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Belal Khan"
+                android:text="Suttipong "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline" />
 
             <TextView
                 android:id="@+id/textViewEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Belal Khan"
+                android:text="suttipong.kull@gmail.com"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/textViewSchool"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Belal Khan"
+                android:text="history"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
 

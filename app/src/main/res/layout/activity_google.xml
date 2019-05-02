@@ -2,6 +2,7 @@
 <RelativeLayout
 	style="@style/CustomRelativeLayout"
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="#eaeff9"
 	xmlns:tools="http://schemas.android.com/tools">
 
 	<ImageView

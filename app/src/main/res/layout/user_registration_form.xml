@@ -4,8 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryBackground"
+    android:background="#03a373"
     tools:context=".activities.Registration.RegistrationUserActivity">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        app:srcCompat="@drawable/oldman_icon" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,7 +39,7 @@
             android:id="@+id/editTextFirstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_password"
+            android:drawableLeft="@drawable/ic_users"
             android:drawablePadding="5dp"
             android:hint="Firstname"
             android:inputType="textPassword" />
@@ -42,7 +48,7 @@
             android:id="@+id/editTextLastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_name"
+            android:drawableLeft="@drawable/ic_users"
             android:drawablePadding="5dp"
             android:hint="Lastname"
             android:inputType="textPersonName" />
@@ -51,7 +57,7 @@
             android:id="@+id/editTextCitizenId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_school"
+            android:drawableLeft="@drawable/ic_user_id"
             android:drawablePadding="5dp"
             android:hint="Citizen Id"
             android:inputType="text" />
@@ -60,7 +66,7 @@
             android:id="@+id/editTextBirthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_school"
+            android:drawableLeft="@drawable/ic_birthday"
             android:drawablePadding="5dp"
             android:hint="Birthday"
             android:inputType="text" />
@@ -68,17 +74,17 @@
         <EditText
             android:id="@+id/editTextHometown"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_school"
+            android:drawableLeft="@drawable/ic_hometown"
             android:drawablePadding="5dp"
             android:hint="Hometown"
+            android:layout_height="100dp"
             android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextTelephoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_school"
+            android:drawableLeft="@drawable/ic_telephone"
             android:drawablePadding="5dp"
             android:hint="Telephone Number"
             android:inputType="text" />
@@ -87,7 +93,7 @@
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_school"
+            android:drawableLeft="@drawable/ic_email_black"
             android:drawablePadding="5dp"
             android:hint="Email"
             android:inputType="text" />
@@ -96,7 +102,7 @@
             android:id="@+id/editTextContact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_school"
+            android:drawableLeft="@drawable/ic_contacts"
             android:drawablePadding="5dp"
             android:hint="Contact"
             android:inputType="text" />
@@ -116,16 +122,42 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorFormBackground" />
 
-    <Button
-        android:id="@+id/buttonUserRegistrationForm"
-        android:layout_width="180dp"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_below="@id/textViewLogin"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="Sign Up"
-        android:textAllCaps="false"
-        android:textColor="@color/colorFormBackground" />
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonPharmacyForm"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@color/colorFormBackground" />
+
+        <Button
+            android:id="@+id/cancle"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/colorFormBackground" />
+
+    </LinearLayout>
 
 </RelativeLayout>

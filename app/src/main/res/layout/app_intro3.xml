@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_weight="10"
-    android:background="#03a373"
+    android:background="#cc6600"
     android:orientation="vertical">
 
     <TextView
@@ -15,7 +15,7 @@
         android:gravity="center"
         android:paddingLeft="32dp"
         android:paddingRight="29dp"
-        android:text="Chat Room"
+        android:text="Smart Location"
         android:textColor="#ffffff"
         android:textSize="27sp"
         android:textStyle="bold" />
@@ -33,7 +33,7 @@
             android:layout_gravity="center"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:src="@drawable/chat_icon_resize" />
+            android:src="@drawable/google_location_icon" />
     </LinearLayout>
 
     <TextView
@@ -44,7 +44,7 @@
         android:gravity="center"
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
-        android:text="Smart Chatroom for Health Care"
+        android:text="User searching and localizing for drug request and send the data to pharmacy"
         android:textColor="#ffffff"
         android:textSize="16sp" />
 

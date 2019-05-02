@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/_16sdp"
     android:orientation="vertical"
+    android:background="#eaeff9"
     tools:context="com.eng.chula.se.hygeia.activities.Login.FirebaseEditProfileActivity">
 
     <EditText
@@ -52,7 +53,7 @@
         android:id="@+id/profile_hobby"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_profile_hobby"
+        android:hint="@string/edit_profile_address"
         android:inputType="text"
         android:maxLines="1"
         android:padding="@dimen/_12sdp"

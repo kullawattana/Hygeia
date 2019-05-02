@@ -4,8 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryBackground"
+    android:background="#03a373"
     tools:context=".activities.Pharmacy.QABoardQuestionActivity">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/article_board" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,44 +35,69 @@
         android:padding="10dp">
 
         <EditText
-            android:id="@+id/editTextQuestionMessage"
+            android:id="@+id/editTextAskerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_email"
+            android:drawableLeft="@drawable/ic_users"
             android:drawablePadding="5dp"
-            android:hint="Text Message"
-            android:inputType="textEmailAddress" />
+            android:hint="Asker Name"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editTextAskerAccountId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_password"
+            android:drawableLeft="@drawable/ic_id_key"
             android:drawablePadding="5dp"
             android:hint="Asker Account ID"
             android:inputType="textPassword" />
 
         <EditText
-            android:id="@+id/editTextAskerName"
+            android:id="@+id/editTextQuestionMessage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_name"
+            android:layout_height="252dp"
             android:drawablePadding="5dp"
-            android:hint="Asker Name"
-            android:inputType="textPersonName" />
+            android:hint="Text Message"
+            android:inputType="textEmailAddress" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonQABoardQuestion"
-        android:layout_width="180dp"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_below="@id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="OK"
-        android:textAllCaps="false"
-        android:textColor="@color/colorFormBackground" />
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonPharmacyForm"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@color/colorFormBackground" />
+
+        <Button
+            android:id="@+id/cancle"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/colorFormBackground" />
+
+    </LinearLayout>
 
 </RelativeLayout>

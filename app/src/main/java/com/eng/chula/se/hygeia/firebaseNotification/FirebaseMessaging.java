@@ -10,15 +10,14 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
+import com.eng.chula.se.hygeia.activities.SplashScreen.HelloHygeiaSplashScreenActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.io.File;
-
-import co.app.longtumdo.carekhun.MainActivityCareKhun;
-
 /**
- * Created by Suttipong.k on 3/31/2017.
+ * Created by Suttipong.k
+ * on 3/31/2017.
  */
 
 public class FirebaseMessaging extends FirebaseMessagingService {
@@ -43,7 +42,7 @@ public class FirebaseMessaging extends FirebaseMessagingService {
 
     //param messageBody FCM message body received.
     public void sendNotification(String body, String queueNo, String nameAndSurname, String tel, String email, String office, String date, String imageBarcode) {
-        Intent intent = new Intent(this, MainActivityCareKhun.class);
+        Intent intent = new Intent(this, HelloHygeiaSplashScreenActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent, PendingIntent.FLAG_ONE_SHOT);
 
@@ -56,17 +55,6 @@ public class FirebaseMessaging extends FirebaseMessagingService {
         file.mkdirs();
         fileIDPath = fileIDPath + "//barcode.jpg";
         Bitmap bitmap = null;
-
-        /*try {
-            File tempFile = new File(fileIDPath);
-            if (tempFile.exists()) {
-                bitmap = ImageUtil.openJpegFile(fileIDPath);
-            } else {
-                bitmap = null;
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }*/
 
         //-----------------------------------END FIREBASE NOTIFICATION INBOX STYLE-----------------------------------------------------
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
@@ -85,12 +73,12 @@ public class FirebaseMessaging extends FirebaseMessagingService {
             inboxStyle.addLine(events[i]);
         }
         notificationBuilder.setStyle(inboxStyle);
-        //-----------------------------------END FIREBASE NOTIFICATION INBOX STYLE--------------------------------------------------------
 
-        Intent resultIntent = new Intent(this, MainActivityCareKhun.class);
+        //-----------------------------------END FIREBASE NOTIFICATION INBOX STYLE--------------------------------------------------------
+        Intent resultIntent = new Intent(this, HelloHygeiaSplashScreenActivity.class);
 
         TaskStackBuilder TSB = TaskStackBuilder.create(this);
-        TSB.addParentStack(MainActivityCareKhun.class);
+        TSB.addParentStack(HelloHygeiaSplashScreenActivity.class);
 
         // Adds the Intent that starts the Activity to the top of the stack
         TSB.addNextIntent(resultIntent);
@@ -98,7 +86,6 @@ public class FirebaseMessaging extends FirebaseMessagingService {
 
         notificationBuilder.setContentIntent(resultPendingIntent);
         notificationBuilder.setAutoCancel(true);
-        //------------------------------------------------------------------------------------------
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());

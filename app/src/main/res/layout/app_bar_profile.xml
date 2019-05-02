@@ -48,7 +48,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="33dp"
                     android:layout_weight="1"
-                    android:text="Discussion Overview"
+                    android:text="HYGEIA NEAR YOU"
                     android:textAlignment="center"
                     android:textSize="30dp"
                     android:textStyle="bold" />
@@ -75,7 +75,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="33dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/add_icon_resize" />
+                        app:srcCompat="@drawable/drug_request" />
 
                 </LinearLayout>
 
@@ -95,7 +95,7 @@
                         android:layout_alignTop="@+id/img_fall_detection"
                         android:layout_marginTop="33dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/wearable_icon" />
+                        app:srcCompat="@drawable/chat_icon_resize" />
 
                 </LinearLayout>
 
@@ -119,7 +119,7 @@
                         android:layout_alignEnd="@+id/img_fall_detection"
                         android:layout_marginTop="20dp"
                         android:layout_weight="1"
-                        android:text="Add Profile"
+                        android:text="Drug Request"
                         android:textAlignment="center"
                         android:textSize="20dp"
                         android:textStyle="bold" />
@@ -141,7 +141,7 @@
                         android:layout_alignStart="@+id/img_wearable"
                         android:layout_marginTop="20dp"
                         android:layout_weight="1"
-                        android:text="Wearable"
+                        android:text="Chat"
                         android:textAlignment="center"
                         android:textSize="20dp"
                         android:textStyle="bold" />
@@ -170,7 +170,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="33dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/fall_detecticon" />
+                        app:srcCompat="@drawable/pharmacy" />
 
                 </LinearLayout>
 
@@ -190,7 +190,7 @@
                         android:layout_alignTop="@+id/img_fall_detection"
                         android:layout_marginTop="33dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/chat_icon_resize" />
+                        app:srcCompat="@drawable/history_icon" />
 
                 </LinearLayout>
 
@@ -214,7 +214,7 @@
                         android:layout_alignEnd="@+id/img_fall_detection"
                         android:layout_marginTop="20dp"
                         android:layout_weight="1"
-                        android:text="Fall Detection"
+                        android:text="Pharmacy Checkup"
                         android:textAlignment="center"
                         android:textSize="20dp"
                         android:textStyle="bold" />
@@ -236,7 +236,7 @@
                         android:layout_alignStart="@+id/img_wearable"
                         android:layout_marginTop="20dp"
                         android:layout_weight="1"
-                        android:text="Chat"
+                        android:text="History"
                         android:textAlignment="center"
                         android:textSize="20dp"
                         android:textStyle="bold" />

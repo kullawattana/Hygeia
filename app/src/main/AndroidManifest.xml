@@ -121,8 +121,7 @@
         <!-- Show Profile from Firebase-->
         <activity
             android:name="com.eng.chula.se.hygeia.activities.Homepage.FirebaseProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_profile" />
 
         <!-- Edit Profile from Firebase-->
         <activity android:name="com.eng.chula.se.hygeia.activities.Login.FirebaseEditProfileActivity" />

@@ -4,11 +4,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_weight="10"
-    android:background="#F5B041"
+    android:background="#0385a3"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
@@ -16,7 +15,7 @@
         android:gravity="center"
         android:paddingLeft="32dp"
         android:paddingRight="29dp"
-        android:text="Smart Wearable"
+        android:text="Smart Chat"
         android:textColor="#ffffff"
         android:textSize="27sp"
         android:textStyle="bold" />
@@ -29,17 +28,15 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:src="@drawable/wearable_icon" />
+            android:src="@drawable/chat_icon_resize" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
@@ -47,7 +44,7 @@
         android:gravity="center"
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
-        android:text="Smart Wearable for Elderly Care"
+        android:text="Chat system between general users and pharmacists"
         android:textColor="#ffffff"
         android:textSize="16sp" />
 

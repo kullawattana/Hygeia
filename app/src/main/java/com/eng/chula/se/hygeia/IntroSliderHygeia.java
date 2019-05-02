@@ -18,10 +18,10 @@ public class IntroSliderHygeia extends AppIntro {
     @Override
     public void init(Bundle savedInstanceState) {
 
-        addSlide(IntroSliderFragment.newInstance(R.layout.app_intro1));
         addSlide(IntroSliderFragment.newInstance(R.layout.app_intro2));
-        addSlide(IntroSliderFragment.newInstance(R.layout.app_intro3));
+        addSlide(IntroSliderFragment.newInstance(R.layout.app_intro1));
         addSlide(IntroSliderFragment.newInstance(R.layout.app_intro4));
+        addSlide(IntroSliderFragment.newInstance(R.layout.app_intro5));
 
         showStatusBar(false);
         showSkipButton(false);

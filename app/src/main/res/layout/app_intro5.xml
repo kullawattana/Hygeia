@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_weight="10"
-    android:background="#03a373"
+    android:background="#b704c4"
     android:orientation="vertical">
 
     <TextView
@@ -15,7 +15,7 @@
         android:gravity="center"
         android:paddingLeft="32dp"
         android:paddingRight="29dp"
-        android:text="Smart Pharmacy Management"
+        android:text="Smart User Management"
         android:textColor="#ffffff"
         android:textSize="27sp"
         android:textStyle="bold" />
@@ -32,8 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingLeft="16dp"
+            android:tint="#c1e6f5"
             android:paddingRight="16dp"
-            android:src="@drawable/pharmacy_people_icon" />
+            android:src="@drawable/smart_notification" />
     </LinearLayout>
 
     <TextView
@@ -44,11 +45,12 @@
         android:gravity="center"
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
-        android:text="Pharmacist and Pharmacy registration on system, Drug Recommendation System, (Q and A) System and Pharmaceutical Article View System"
+        android:text="User use Registration and Account Management System to check and send email to pharmacy and receive notification"
         android:textColor="#ffffff"
         android:textSize="16sp" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="62dp" />
+
 </LinearLayout>

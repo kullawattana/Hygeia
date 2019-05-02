@@ -62,7 +62,7 @@
                 android:layout_height="match_parent"
                 android:hint="E-mail"/>
 
-            <EditText
+<!--            <EditText
                 android:id="@+id/elderly"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -72,7 +72,7 @@
                 android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Time of Fall Detection"/>
+                android:hint="Time of Fall Detection"/>-->
 
             <Button
                 android:layout_width="match_parent"

@@ -22,4 +22,5 @@
     <dimen name="nav_header_height">240dp</dimen>
     <dimen name="cardview_margin_8">8dp</dimen>
     <dimen name="cardview_margin_4">4dp</dimen>
+
 </resources>

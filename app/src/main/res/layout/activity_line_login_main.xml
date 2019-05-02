@@ -11,6 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="#eaeff9"
     tools:context="com.eng.chula.se.hygeia.LineLogin.MainLoginLineActivity">
 
     <TextView
