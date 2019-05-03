@@ -73,32 +73,26 @@ public class MainStepperActivity extends AppCompatActivity {
 
         int count = 0;
         int i = 0;
-        while (i <= 2) {
+        while (i <= 6) {
 
             final SteppersItem item = new SteppersItem();
             item.setLabel("STEP : "+i);
             item.setPositiveButtonEnable(i % 2 != 0);
 
             if(i == 0) {
-                item.setSubLabel("Create Drug Request Time");
-            } else if(i == 1) {
-                item.setSubLabel("End of Create Drug Request Time ... Next Step 2");
-            } else if(i == 2) {
                 item.setSubLabel("Create Drug Request");
-            } else if(i == 3) {
-                item.setSubLabel("End of Create Drug Request ... Next Step 3");
-            } else if(i == 4) {
+            } else if(i == 1) {
+                item.setSubLabel("End of Create Drug Request ... Next Step 2");
+            } else if(i == 2) {
                 item.setSubLabel("Get location for send drug");
-            } else if(i == 5) {
-                item.setSubLabel("End of get location for send drug .. Next Step 4");
-            } else if(i == 6) {
+            } else if(i == 3) {
+                item.setSubLabel("End of get location for send drug ... Next Step 4");
+            } else if(i == 4) {
                 item.setSubLabel("Get credit Card of your buy drug");
-            } else if(i == 7) {
-                item.setSubLabel("End of get credit Card of your buy drug .. Next Step 5");
-            } else if(i == 8) {
-                item.setSubLabel("Upload data of your drug");
-            } else if(i == 9) {
-                item.setSubLabel("End of Upload data of your drug .. Finish Step");
+            } else if(i == 5) {
+                item.setSubLabel("End of get credit Card of your buy drug .. Next Step 6");
+            } else if(i == 6) {
+                item.setSubLabel("Finish");
             }
 
             if(i % 2 == 0) {            //เลขคู่
@@ -127,17 +121,21 @@ public class MainStepperActivity extends AppCompatActivity {
                                 SharedPreferences.Editor editor = getSharedPreferences(MY_STATE, MODE_PRIVATE).edit();
                                 editor.putInt("MY_STATE", 2);
                                 editor.apply();
-                            }
-
-                            /*else if (restoredText == 2) {
-                                Intent mainActivityReqDrug = new Intent(getApplicationContext(), LoginMainActivity.class);
-                                mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                                getApplicationContext().startActivity(mainActivityReqDrug);
+                            } else if (restoredText == 2) {
+                                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.kasikorn.retail.mbanking.kplus.dev");
+                                startActivity(launchIntent);
 
                                 SharedPreferences.Editor editor = getSharedPreferences(MY_STATE, MODE_PRIVATE).edit();
                                 editor.putInt("MY_STATE", 3);
                                 editor.apply();
-                            }*/
+                            } else if (restoredText == 3) {
+                                int state = prefs.getInt("MY_STATE", 0);
+                                if (state == 3) {
+                                    Intent mainActivityReqDrug = new Intent(getApplicationContext(), FirebaseProfileActivity.class);
+                                    mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                                    getApplicationContext().startActivity(mainActivityReqDrug);
+                                }
+                            }
                         }
 
                     }
@@ -155,15 +153,6 @@ public class MainStepperActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-
-                    SharedPreferences prefs = getSharedPreferences(MY_STATE, MODE_PRIVATE);
-                    int restoredText = prefs.getInt("MY_STATE", 0);
-                    if (restoredText == 2) {
-                        Intent mainActivityReqDrug = new Intent(getApplicationContext(), FirebaseProfileActivity.class);
-                        mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                        getApplicationContext().startActivity(mainActivityReqDrug);
-                    }
-
                     item.setSkippable(true);
                 }
 

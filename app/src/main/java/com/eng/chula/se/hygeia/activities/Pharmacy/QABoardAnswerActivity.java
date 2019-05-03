@@ -2,6 +2,7 @@ package com.eng.chula.se.hygeia.activities.Pharmacy;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.droidbyme.dialoglib.AnimUtils;
 import com.droidbyme.dialoglib.DroidDialog;
 import com.eng.chula.se.hygeia.R;
+import com.eng.chula.se.hygeia.activities.Homepage.FirebaseProfileActivity;
 import com.eng.chula.se.hygeia.activities.LoginMainActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
@@ -31,6 +33,11 @@ import retrofit2.Response;
 public class QABoardAnswerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextAnswerMessage, editTextAskerAccountId, editTextAskerName;
+
+    final String QABoardAnswerActivity = "QABoardAnswerActivity";
+
+    Integer questionIdToInt = 0;
+    Integer askerAccountIdToInt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,54 +63,87 @@ public class QABoardAnswerActivity extends AppCompatActivity implements View.OnC
         }*/
     }
 
-    private void answerRequest() {
-        String questionId = UUID.randomUUID().toString();
-        String textMessage = editTextAnswerMessage.getText().toString().trim();
-        String askerAccountId = editTextAskerAccountId.getText().toString().trim();
-        String askerName = editTextAskerName.getText().toString().trim();
+    Integer answerId = 0;
+    Integer questionId = 0;
+    String textMessage = "";
+    String askerAccountId = "";
+    String askerName = "";
 
+    Boolean validateFlag = false;
+
+    public void validateAnswerRequest(){
+        answerId = 1;
+        questionId = 1;
+        textMessage = editTextAnswerMessage.getText().toString().trim();
+        askerAccountId = editTextAskerAccountId.getText().toString().trim();
+        askerName = editTextAskerName.getText().toString().trim();
 
         if (textMessage.isEmpty()) {
             editTextAnswerMessage.setError("Answer Message is required");
             editTextAnswerMessage.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (askerAccountId.isEmpty()) {
             editTextAskerAccountId.setError("Asker Account Id Id is required");
             editTextAskerAccountId.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (askerName.isEmpty()) {
             editTextAskerName.setError("Asker Name is required");
             editTextAskerName.requestFocus();
+            validateFlag = false;
             return;
         }
 
-        Call<DefaultResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .answerRequest(questionId,textMessage,askerAccountId, askerName);
+        validateFlag = true;
+    }
 
-        call.enqueue(new Callback<DefaultResponse>() {
-            @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                if (response.code() == 201) {
+    private void answerRequest(View v) {
+        validateAnswerRequest();
 
-                    DefaultResponse dr = response.body();
-                    Toast.makeText(QABoardAnswerActivity.this, dr.getMsg(), Toast.LENGTH_LONG).show();
+        if(validateFlag == true){
 
-                } else if (response.code() == 422) {
-                    Toast.makeText(QABoardAnswerActivity.this, "QA Board Answer is already exist", Toast.LENGTH_LONG).show();
+            openDialog(v);
+
+            SharedPreferences.Editor editor = getSharedPreferences(QABoardAnswerActivity, MODE_PRIVATE).edit();
+
+            questionIdToInt = Integer.valueOf(questionId);
+            askerAccountIdToInt = Integer.valueOf(askerAccountId);
+            editor.putInt("answerId", answerId);
+            editor.putInt("questionId", questionIdToInt);
+            editor.putString("textMessage", textMessage);
+            editor.putInt("askerAccountId", askerAccountIdToInt);
+            editor.putString("askerName", askerName);
+            editor.apply();
+
+            Call<DefaultResponse> call = RetrofitClient
+                    .getInstance()
+                    .getApi()
+                    .answerBoard(answerId,textMessage,questionIdToInt,askerAccountIdToInt, askerName);
+
+            call.enqueue(new Callback<DefaultResponse>() {
+                @Override
+                public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                    if (response.code() == 201) {
+
+                        DefaultResponse dr = response.body();
+                        Toast.makeText(QABoardAnswerActivity.this, dr.getMsg(), Toast.LENGTH_LONG).show();
+
+                    } else if (response.code() == 422) {
+                        Toast.makeText(QABoardAnswerActivity.this, "QA Board Answer is already exist", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                Toast.makeText(QABoardAnswerActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                    Toast.makeText(QABoardAnswerActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
 
     }
 
@@ -111,8 +151,7 @@ public class QABoardAnswerActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonQAboardAnswer:
-                openDialog(v);
-                //answerRequest();
+                answerRequest(v);
                 break;
             case R.id.textViewLogin:
                 startActivity(new Intent(this, LoginMainActivity.class));
@@ -131,6 +170,10 @@ public class QABoardAnswerActivity extends AppCompatActivity implements View.OnC
                     public void onPositive(Dialog droidDialog) {
                         droidDialog.dismiss();
                         Toast.makeText(QABoardAnswerActivity.this, "YES", Toast.LENGTH_SHORT).show();
+
+                        Intent historyMainActivity = new Intent(getApplicationContext(), FirebaseProfileActivity.class);
+                        historyMainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                        getApplicationContext().startActivity(historyMainActivity);
                     }
                 })
                 .negativeButton("No", new DroidDialog.onNegativeListener() {

@@ -2,6 +2,7 @@ package com.eng.chula.se.hygeia.activities.Pharmacy;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +14,16 @@ import com.droidbyme.dialoglib.AnimUtils;
 import com.droidbyme.dialoglib.DroidDialog;
 import com.eng.chula.se.hygeia.R;
 
+import com.eng.chula.se.hygeia.activities.Homepage.FirebaseProfileActivity;
 import com.eng.chula.se.hygeia.activities.LoginMainActivity;
 import com.eng.chula.se.hygeia.activities.Registration.RegistrationUserActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
 import com.eng.chula.se.hygeia.storage.SharedPrefManager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import retrofit2.Call;
@@ -34,6 +39,12 @@ public class DrugRecommendationActivity extends AppCompatActivity implements Vie
 
     private EditText editTextCreatorId, editTextCreatorName, editTextReceiverId;
     private EditText editTextReceiverName, editTextCreateDate;
+
+    final String DrugRecommendationActivity = "DrugRecommendationActivity";
+
+    Integer creatorIdToInt = 0;
+    Integer receiverIdToInt = 0;
+    Date createDateToTypeDate = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,68 +73,113 @@ public class DrugRecommendationActivity extends AppCompatActivity implements Vie
         }*/
     }
 
-    private void drugRecommendation() {
-        String recommendationId = UUID.randomUUID().toString();
-        String creatorId = editTextCreatorId.getText().toString().trim();
-        String creatorName = editTextCreatorName.getText().toString().trim();
-        String receiverId = editTextReceiverId.getText().toString().trim();
-        String receiverName = editTextReceiverName.getText().toString().trim();
-        String createDate = editTextCreateDate.getText().toString().trim();
+    Integer recommendationId = 1;
+    String creatorId = "";
+    String creatorName = "";
+    String receiverId = "";
+    String receiverName = "";
+    String createDate = "";
 
+    Boolean validateFlag = false;
 
-        if (creatorId.isEmpty()) {
-            editTextCreatorId.setError("Creator ID is required");
-            editTextCreatorId.requestFocus();
-            return;
-        }
+    public void validateDrugRecommend(){
+        recommendationId = 1;
+        creatorName = editTextCreatorName.getText().toString().trim();
+        creatorId = editTextCreatorId.getText().toString().trim();
+        receiverId = editTextReceiverId.getText().toString().trim();
+        receiverName = editTextReceiverName.getText().toString().trim();
+        createDate = editTextCreateDate.getText().toString().trim();
 
         if (creatorName.isEmpty()) {
             editTextCreatorName.setError("Creator Name is required");
             editTextCreatorName.requestFocus();
+            validateFlag = false;
             return;
         }
 
-        if (receiverId.isEmpty()) {
-            editTextReceiverId.setError("Receiver ID is required");
-            editTextReceiverId.requestFocus();
+        if (creatorId.isEmpty()) {
+            editTextCreatorId.setError("Creator ID is required");
+            editTextCreatorId.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (receiverName.isEmpty()) {
             editTextReceiverName.setError("Receiver Name is required");
             editTextReceiverName.requestFocus();
+            validateFlag = false;
+            return;
+        }
+
+        if (receiverId.isEmpty()) {
+            editTextReceiverId.setError("Receiver ID is required");
+            editTextReceiverId.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (createDate.isEmpty()) {
             editTextCreateDate.setError("Create Date is required");
             editTextCreateDate.requestFocus();
+            validateFlag = false;
             return;
         }
 
-        Call<DefaultResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .drugRecommendation(recommendationId,creatorId,creatorName,receiverId,receiverName,createDate);
+        validateFlag = true;
+    }
 
-        call.enqueue(new Callback<DefaultResponse>() {
-            @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                if (response.code() == 201) {
+    private void drugRecommendation(View v) {
 
-                    DefaultResponse dr = response.body();
-                    Toast.makeText(DrugRecommendationActivity.this, dr.getMsg(), Toast.LENGTH_LONG).show();
+        validateDrugRecommend();
 
-                } else if (response.code() == 422) {
-                    Toast.makeText(DrugRecommendationActivity.this, "Drug Recommendation Data is already exist", Toast.LENGTH_LONG).show();
+        if(validateFlag == true){
+
+            openDialog(v);
+
+            SharedPreferences.Editor editor = getSharedPreferences(DrugRecommendationActivity, MODE_PRIVATE).edit();
+
+            String sDate = "31/12/1998";
+            try {
+                createDateToTypeDate = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            creatorIdToInt = Integer.valueOf(creatorId);
+            receiverIdToInt = Integer.valueOf(receiverId);
+            editor.putInt("recommendationId", recommendationId);
+            editor.putInt("creatorId", creatorIdToInt);
+            editor.putString("creatorName", creatorName);
+            editor.putInt("receiverId", receiverIdToInt);
+            editor.putString("receiverName", receiverName);
+            editor.putString("sDate", sDate);
+            editor.apply();
+
+            Call<DefaultResponse> call = RetrofitClient
+                    .getInstance()
+                    .getApi()
+                    .drugRecommend(recommendationId,creatorIdToInt,creatorName,receiverIdToInt,receiverName,createDateToTypeDate);
+
+            call.enqueue(new Callback<DefaultResponse>() {
+                @Override
+                public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                    if (response.code() == 201) {
+
+                        DefaultResponse dr = response.body();
+                        Toast.makeText(DrugRecommendationActivity.this, dr.getMsg(), Toast.LENGTH_LONG).show();
+
+                    } else if (response.code() == 422) {
+                        Toast.makeText(DrugRecommendationActivity.this, "Drug Recommendation Data is already exist", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                Toast.makeText(DrugRecommendationActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                    Toast.makeText(DrugRecommendationActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+
+        }
 
     }
 
@@ -131,8 +187,7 @@ public class DrugRecommendationActivity extends AppCompatActivity implements Vie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonDrugRecomendationForm:
-                openDialog(v);
-                //drugRecommendation();
+                drugRecommendation(v);
                 break;
             case R.id.textViewLogin:
                 startActivity(new Intent(this, LoginMainActivity.class));
@@ -151,6 +206,10 @@ public class DrugRecommendationActivity extends AppCompatActivity implements Vie
                     public void onPositive(Dialog droidDialog) {
                         droidDialog.dismiss();
                         Toast.makeText(DrugRecommendationActivity.this, "YES", Toast.LENGTH_SHORT).show();
+
+                        Intent historyMainActivity = new Intent(getApplicationContext(), FirebaseProfileActivity.class);
+                        historyMainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                        getApplicationContext().startActivity(historyMainActivity);
                     }
                 })
                 .negativeButton("No", new DroidDialog.onNegativeListener() {

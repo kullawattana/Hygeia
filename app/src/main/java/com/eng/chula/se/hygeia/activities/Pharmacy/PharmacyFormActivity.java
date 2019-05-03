@@ -1,6 +1,7 @@
 package com.eng.chula.se.hygeia.activities.Pharmacy;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +13,8 @@ import com.eng.chula.se.hygeia.activities.LoginMainActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
 import com.eng.chula.se.hygeia.storage.SharedPrefManager;
+
+import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +28,8 @@ import retrofit2.Response;
 public class PharmacyFormActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextPharmacistName, editTextPharmacistSurname, editTextPharmacistLicenseId;
+
+    final String PharmacyFormActivity = "PharmacyFormActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,53 +56,79 @@ public class PharmacyFormActivity extends AppCompatActivity implements View.OnCl
         }*/
     }
 
-    private void pharmacyForm() {
-        String pharmacistName = editTextPharmacistName.getText().toString().trim();
-        String pharmacistSurname = editTextPharmacistSurname.getText().toString().trim();
-        String pharmacistLicenseId = editTextPharmacistLicenseId.getText().toString().trim();
+    Integer pharmacistid = 0;
+    String pharmacistName = "";
+    String pharmacistSurname = "";
+    String pharmacistLicenseId = "";
+    Boolean validateFlag = false;
+
+    public void validatePharmacyForm(){
+        pharmacistid = 1;
+        pharmacistName = editTextPharmacistName.getText().toString().trim();
+        pharmacistSurname = editTextPharmacistSurname.getText().toString().trim();
+        pharmacistLicenseId = editTextPharmacistLicenseId.getText().toString().trim();
 
 
         if (pharmacistName.isEmpty()) {
             editTextPharmacistName.setError("Pharmacist Name is required");
             editTextPharmacistName.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (pharmacistSurname.isEmpty()) {
             editTextPharmacistSurname.setError("Pharmacist Surname is required");
             editTextPharmacistSurname.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (pharmacistLicenseId.isEmpty()) {
             editTextPharmacistLicenseId.setError("Pharmacist LicenseId is required");
             editTextPharmacistLicenseId.requestFocus();
+            validateFlag = false;
             return;
         }
 
-        Call<DefaultResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .pharmacyForm(pharmacistName,pharmacistSurname,pharmacistLicenseId);
+        validateFlag = true;
+    }
 
-        call.enqueue(new Callback<DefaultResponse>() {
-            @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                if (response.code() == 201) {
+    private void pharmacyForm() {
 
-                    DefaultResponse dr = response.body();
-                    Toast.makeText(PharmacyFormActivity.this, dr.getMsg(), Toast.LENGTH_LONG).show();
+        validatePharmacyForm();
 
-                } else if (response.code() == 422) {
-                    Toast.makeText(PharmacyFormActivity.this, "Pharmacy Data is already exist", Toast.LENGTH_LONG).show();
+        if(validateFlag == true){
+            SharedPreferences.Editor editor = getSharedPreferences(PharmacyFormActivity, MODE_PRIVATE).edit();
+            editor.putInt("pharmacistid", pharmacistid);
+            editor.putString("pharmacistName", pharmacistName);
+            editor.putString("pharmacistSurname", pharmacistSurname);
+            editor.putString("pharmacistLicenseId", pharmacistLicenseId);
+            editor.apply();
+
+            Call<DefaultResponse> call = RetrofitClient
+                    .getInstance()
+                    .getApi()
+                    .pharmacist(pharmacistid,pharmacistName,pharmacistSurname,pharmacistLicenseId);
+
+            call.enqueue(new Callback<DefaultResponse>() {
+                @Override
+                public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                    if (response.code() == 201) {
+
+                        DefaultResponse dr = response.body();
+                        Toast.makeText(PharmacyFormActivity.this, dr.getMsg(), Toast.LENGTH_LONG).show();
+
+                    } else if (response.code() == 422) {
+                        Toast.makeText(PharmacyFormActivity.this, "Pharmacy Data is already exist", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                Toast.makeText(PharmacyFormActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                    Toast.makeText(PharmacyFormActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
 
     }
 

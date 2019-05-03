@@ -114,6 +114,7 @@ public interface Api {
             @Field("createDate") Date createDate
     );
 
+    //Google API
     @FormUrlEncoded
     @POST("drugStore")
     Call<DefaultResponse> drugStore (
@@ -153,7 +154,17 @@ public interface Api {
             @Field("answererName") String answererName
     );
 
+    //Drug Request
     @FormUrlEncoded
+    @POST("drugrequest")
+    Call<DefaultResponse> drugRequest(
+            @Field("requestId") String requestId,
+            @Field("topic") String topic,
+            @Field("attachment") String attachment
+    );
+
+
+    /*@FormUrlEncoded
     @POST("chatroom")
     Call<DefaultResponse> chatroom (
             @Field("userId") Integer userId,
@@ -171,5 +182,5 @@ public interface Api {
             @Field("textMessage") String textMessage,
             @Field("imageMessage") String imageMessage
     );
-
+    */
 }

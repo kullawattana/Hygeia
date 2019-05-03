@@ -2,6 +2,7 @@ package com.eng.chula.se.hygeia.activities.Registration;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,11 +14,17 @@ import android.widget.Toast;
 import com.droidbyme.dialoglib.AnimUtils;
 import com.droidbyme.dialoglib.DroidDialog;
 import com.eng.chula.se.hygeia.R;
+import com.eng.chula.se.hygeia.activities.Homepage.FirebaseProfileActivity;
 import com.eng.chula.se.hygeia.activities.LoginMainActivity;
 import com.eng.chula.se.hygeia.activities.Pharmacy.ArticleBoardActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
 import com.eng.chula.se.hygeia.storage.SharedPrefManager;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +40,10 @@ public class RegistrationFormActivity extends AppCompatActivity implements View.
     private EditText editTextPassword, editTextFirstname, editTextLastname;
     private EditText editTextCitizenId,editTextBirthday, editTextHometown;
     private EditText editTextTelephoneNumber, editTextEmail, editTextContact;
+
+    final String RegistrationFormActivity = "RegistrationFormActivity";
+
+    Date birthdayToDate = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +77,8 @@ public class RegistrationFormActivity extends AppCompatActivity implements View.
     }
 
     private void registrationForm() {
+
+        Integer accountId = Integer.valueOf(UUID.randomUUID().toString());
         String password = editTextPassword.getText().toString().trim();
         String firstname = editTextFirstname.getText().toString().trim();
         String lastname = editTextLastname.getText().toString().trim();
@@ -136,10 +149,33 @@ public class RegistrationFormActivity extends AppCompatActivity implements View.
             return;
         }
 
+        if(!password.isEmpty()){
+            SharedPreferences.Editor editor = getSharedPreferences(RegistrationFormActivity, MODE_PRIVATE).edit();
+
+            String sDate = "14/07/2533";
+            try {
+                birthdayToDate = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            editor.putInt("accountId", accountId);
+            editor.putString("password", password);
+            editor.putString("firstname", firstname);
+            editor.putString("lastname", lastname);
+            editor.putString("citizenId", citizenId);
+            editor.putString("birthday", birthday.toString());
+            editor.putString("hometown", hometown);
+            editor.putString("telephoneNumber", telephoneNumber);
+            editor.putString("email", email);
+            editor.putString("contact", contact);
+            editor.apply();
+        }
+
         Call<DefaultResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .registrationForm(password,firstname,lastname,citizenId,birthday,hometown,telephoneNumber,email,contact);
+                .registrationForm(accountId,password,firstname,lastname,citizenId,birthdayToDate,hometown,telephoneNumber,email,contact);
 
         call.enqueue(new Callback<DefaultResponse>() {
             @Override
@@ -169,7 +205,7 @@ public class RegistrationFormActivity extends AppCompatActivity implements View.
                 openDialog(v);
 
                 //Call Service
-                //registrationForm();
+                registrationForm();
 
                 break;
             case R.id.textViewLogin:
@@ -189,6 +225,11 @@ public class RegistrationFormActivity extends AppCompatActivity implements View.
                     public void onPositive(Dialog droidDialog) {
                         droidDialog.dismiss();
                         Toast.makeText(RegistrationFormActivity.this, "YES", Toast.LENGTH_SHORT).show();
+
+                        Intent historyMainActivity = new Intent(getApplicationContext(), FirebaseProfileActivity.class);
+                        historyMainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                        getApplicationContext().startActivity(historyMainActivity);
+
                     }
                 })
                 .negativeButton("No", new DroidDialog.onNegativeListener() {
