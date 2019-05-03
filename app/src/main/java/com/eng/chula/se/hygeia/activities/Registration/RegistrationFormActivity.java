@@ -76,80 +76,112 @@ public class RegistrationFormActivity extends AppCompatActivity implements View.
         }
     }
 
-    private void registrationForm() {
+    Integer accountId = 0;
+    String password = "";
+    String firstname = "";
+    String lastname = "";
+    String citizenId = "";
+    String birthday = "";
+    String hometown = "";
+    String telephoneNumber = "";
+    String email = "";
+    String contact = "";
 
-        Integer accountId = Integer.valueOf(UUID.randomUUID().toString());
-        String password = editTextPassword.getText().toString().trim();
-        String firstname = editTextFirstname.getText().toString().trim();
-        String lastname = editTextLastname.getText().toString().trim();
-        String citizenId = editTextCitizenId.getText().toString().trim();
-        String birthday = editTextBirthday.getText().toString().trim();
-        String hometown = editTextHometown.getText().toString().trim();
-        String telephoneNumber = editTextTelephoneNumber.getText().toString().trim();
-        String email = editTextEmail.getText().toString().trim();
-        String contact = editTextContact.getText().toString().trim();
+    Boolean validateFlag = false;
+
+    public void validateRegistrationForm(){
+        Integer accountId = 1;
+        password = editTextPassword.getText().toString().trim();
+        firstname = editTextFirstname.getText().toString().trim();
+        lastname = editTextLastname.getText().toString().trim();
+        citizenId = editTextCitizenId.getText().toString().trim();
+        birthday = editTextBirthday.getText().toString().trim();
+        hometown = editTextHometown.getText().toString().trim();
+        telephoneNumber = editTextTelephoneNumber.getText().toString().trim();
+        email = editTextEmail.getText().toString().trim();
+        contact = editTextContact.getText().toString().trim();
 
         if (password.isEmpty()) {
             editTextPassword.setError("Password is required");
             editTextPassword.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (password.length() < 6) {
             editTextPassword.setError("Password should be at least 6 character long");
             editTextPassword.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (firstname.isEmpty()) {
             editTextFirstname.setError("First Name is required");
             editTextFirstname.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (lastname.isEmpty()) {
             editTextLastname.setError("Last Name is required");
             editTextLastname.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (citizenId.isEmpty()) {
             editTextCitizenId.setError("Citizen Id is required");
             editTextCitizenId.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (birthday.isEmpty()) {
             editTextBirthday.setError("Birthday is required");
             editTextBirthday.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (hometown.isEmpty()) {
             editTextHometown.setError("Hometown is required");
             editTextHometown.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (telephoneNumber.isEmpty()) {
             editTextTelephoneNumber.setError("Telephone Number is required");
             editTextTelephoneNumber.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Enter a valid email");
             editTextEmail.requestFocus();
+            validateFlag = false;
             return;
         }
 
         if (contact.isEmpty()) {
             editTextContact.setError("Contact is required");
             editTextContact.requestFocus();
+            validateFlag = false;
             return;
         }
 
-        if(!password.isEmpty()){
+        validateFlag = true;
+    }
+
+    private void registrationForm(View v) {
+
+        validateRegistrationForm();
+
+        if(validateFlag == true){
+
+            openDialog(v);
+
             SharedPreferences.Editor editor = getSharedPreferences(RegistrationFormActivity, MODE_PRIVATE).edit();
 
             String sDate = "14/07/2533";
@@ -170,43 +202,39 @@ public class RegistrationFormActivity extends AppCompatActivity implements View.
             editor.putString("email", email);
             editor.putString("contact", contact);
             editor.apply();
-        }
 
-        Call<DefaultResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .registrationForm(accountId,password,firstname,lastname,citizenId,birthdayToDate,hometown,telephoneNumber,email,contact);
+            Call<DefaultResponse> call = RetrofitClient
+                    .getInstance()
+                    .getApi()
+                    .registrationForm(accountId,password,firstname,lastname,citizenId,birthdayToDate,hometown,telephoneNumber,email,contact);
 
-        call.enqueue(new Callback<DefaultResponse>() {
-            @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                if (response.code() == 201) {
+            call.enqueue(new Callback<DefaultResponse>() {
+                @Override
+                public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                    if (response.code() == 201) {
 
-                    DefaultResponse dr = response.body();
-                    Toast.makeText(RegistrationFormActivity.this, dr.getMsg(), Toast.LENGTH_LONG).show();
+                        DefaultResponse dr = response.body();
+                        Toast.makeText(RegistrationFormActivity.this, dr.getMsg(), Toast.LENGTH_LONG).show();
 
-                } else if (response.code() == 422) {
-                    Toast.makeText(RegistrationFormActivity.this, "Registration is already exist", Toast.LENGTH_LONG).show();
+                    } else if (response.code() == 422) {
+                        Toast.makeText(RegistrationFormActivity.this, "Registration is already exist", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                Toast.makeText(RegistrationFormActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                    Toast.makeText(RegistrationFormActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
 
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonRegistrationForm:
-                openDialog(v);
-
-                //Call Service
-                registrationForm();
-
+                registrationForm(v);
                 break;
             case R.id.textViewLogin:
                 startActivity(new Intent(this, LoginMainActivity.class));
