@@ -15,10 +15,8 @@ import com.droidbyme.dialoglib.DroidDialog;
 import com.eng.chula.se.hygeia.R;
 
 import com.eng.chula.se.hygeia.activities.LoginMainActivity;
-import com.eng.chula.se.hygeia.activities.MainTestActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
-import com.eng.chula.se.hygeia.storage.SharedPrefManager;
 
 import java.util.UUID;
 
@@ -130,7 +128,7 @@ public class ArticleBoardActivity extends AppCompatActivity implements View.OnCl
         new DroidDialog.Builder(ArticleBoardActivity.this)
                 .icon(R.drawable.ic_action_tick)
                 .title("All Well!")
-                .content(getString(R.string.short_text))
+                .content("Update Data has Already")
                 .cancelable(true, true)
                 .positiveButton("OK", new DroidDialog.onPositiveListener() {
                     @Override

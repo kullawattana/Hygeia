@@ -1,15 +1,20 @@
 package com.eng.chula.se.hygeia.activities.Registration;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.droidbyme.dialoglib.AnimUtils;
+import com.droidbyme.dialoglib.DroidDialog;
 import com.eng.chula.se.hygeia.R;
 import com.eng.chula.se.hygeia.activities.LoginMainActivity;
+import com.eng.chula.se.hygeia.activities.Pharmacy.ArticleBoardActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
 import com.eng.chula.se.hygeia.storage.SharedPrefManager;
@@ -161,11 +166,50 @@ public class RegistrationFormActivity extends AppCompatActivity implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonRegistrationForm:
-                registrationForm();
+                openDialog(v);
+
+                //Call Service
+                //registrationForm();
+
                 break;
             case R.id.textViewLogin:
                 startActivity(new Intent(this, LoginMainActivity.class));
                 break;
         }
+    }
+
+    public void openDialog(View view) {
+        new DroidDialog.Builder(RegistrationFormActivity.this)
+                .icon(R.drawable.ic_action_tick)
+                .title("All Well!")
+                .content("Registration form system has receive data already")
+                .cancelable(true, true)
+                .positiveButton("OK", new DroidDialog.onPositiveListener() {
+                    @Override
+                    public void onPositive(Dialog droidDialog) {
+                        droidDialog.dismiss();
+                        Toast.makeText(RegistrationFormActivity.this, "YES", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .negativeButton("No", new DroidDialog.onNegativeListener() {
+                    @Override
+                    public void onNegative(Dialog droidDialog) {
+                        droidDialog.dismiss();
+                        Toast.makeText(RegistrationFormActivity.this, "No", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .neutralButton("SKIP", new DroidDialog.onNeutralListener() {
+                    @Override
+                    public void onNeutral(Dialog droidDialog) {
+                        droidDialog.dismiss();
+                        Toast.makeText(RegistrationFormActivity.this, "Skip", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .typeface("regular.ttf")
+                .animation(AnimUtils.AnimZoomInOut)
+                .color(ContextCompat.getColor(RegistrationFormActivity.this, R.color.indigo), ContextCompat.getColor(RegistrationFormActivity.this, R.color.white),
+                        ContextCompat.getColor(RegistrationFormActivity.this, R.color.dark_indigo))
+                .divider(true, ContextCompat.getColor(RegistrationFormActivity.this, R.color.orange))
+                .show();
     }
 }

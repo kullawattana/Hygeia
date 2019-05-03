@@ -1,15 +1,20 @@
 package com.eng.chula.se.hygeia.activities.Pharmacy;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.droidbyme.dialoglib.AnimUtils;
+import com.droidbyme.dialoglib.DroidDialog;
 import com.eng.chula.se.hygeia.R;
 
 import com.eng.chula.se.hygeia.activities.LoginMainActivity;
+import com.eng.chula.se.hygeia.activities.Registration.RegistrationUserActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
 import com.eng.chula.se.hygeia.storage.SharedPrefManager;
@@ -126,11 +131,47 @@ public class DrugRecommendationActivity extends AppCompatActivity implements Vie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonDrugRecomendationForm:
-                drugRecommendation();
+                openDialog(v);
+                //drugRecommendation();
                 break;
             case R.id.textViewLogin:
                 startActivity(new Intent(this, LoginMainActivity.class));
                 break;
         }
+    }
+
+    public void openDialog(View view) {
+        new DroidDialog.Builder(DrugRecommendationActivity.this)
+                .icon(R.drawable.ic_action_tick)
+                .title("All Well!")
+                .content("Update data already")
+                .cancelable(true, true)
+                .positiveButton("OK", new DroidDialog.onPositiveListener() {
+                    @Override
+                    public void onPositive(Dialog droidDialog) {
+                        droidDialog.dismiss();
+                        Toast.makeText(DrugRecommendationActivity.this, "YES", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .negativeButton("No", new DroidDialog.onNegativeListener() {
+                    @Override
+                    public void onNegative(Dialog droidDialog) {
+                        droidDialog.dismiss();
+                        Toast.makeText(DrugRecommendationActivity.this, "No", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .neutralButton("SKIP", new DroidDialog.onNeutralListener() {
+                    @Override
+                    public void onNeutral(Dialog droidDialog) {
+                        droidDialog.dismiss();
+                        Toast.makeText(DrugRecommendationActivity.this, "Skip", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .typeface("regular.ttf")
+                .animation(AnimUtils.AnimZoomInOut)
+                .color(ContextCompat.getColor(DrugRecommendationActivity.this, R.color.indigo), ContextCompat.getColor(DrugRecommendationActivity.this, R.color.white),
+                        ContextCompat.getColor(DrugRecommendationActivity.this, R.color.dark_indigo))
+                .divider(true, ContextCompat.getColor(DrugRecommendationActivity.this, R.color.orange))
+                .show();
     }
 }
