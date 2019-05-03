@@ -50,11 +50,11 @@ public class DrugRecommendationActivity extends AppCompatActivity implements Vie
         super.onStart();
 
         //Not Login
-        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+        /*if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
             Intent intent = new Intent(this, LoginMainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-        }
+        }*/
     }
 
     private void drugRecommendation() {

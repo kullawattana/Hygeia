@@ -85,5 +85,6 @@ dependencies {
     implementation files('libs/additionnal.jar')
     implementation files('libs/mail.jar')
     implementation project(':steppers')
+    implementation project(path: ':dialoglib')
 }
 apply plugin: 'com.google.gms.google-services'

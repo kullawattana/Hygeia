@@ -10,8 +10,8 @@
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        app:srcCompat="@drawable/article_board" />
+        android:layout_height="90dp"
+        app:srcCompat="@drawable/answer_icon" />
 
     <TextView
         android:layout_width="wrap_content"

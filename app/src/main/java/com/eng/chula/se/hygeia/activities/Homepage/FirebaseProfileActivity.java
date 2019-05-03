@@ -22,9 +22,9 @@ import com.eng.chula.se.hygeia.R;
 import com.eng.chula.se.hygeia.activities.DrugRequest.MainStepperActivity;
 import com.eng.chula.se.hygeia.activities.History.SendEmailBackgroundActivity;
 import com.eng.chula.se.hygeia.activities.History.UpdateNotificationFirebaseDataActivity;;
+import com.eng.chula.se.hygeia.activities.HistoryMainActivity;
 import com.eng.chula.se.hygeia.activities.ManageUserActivity;
-import com.eng.chula.se.hygeia.activities.Notification.MainEmailNotificationActivity;
-import com.eng.chula.se.hygeia.activities.Pharmacy.PharmacyFormActivity;
+import com.eng.chula.se.hygeia.activities.PharmacyMainActivity;
 import com.eng.chula.se.hygeia.fragments.FirebaseProfileFragment;
 
 public class FirebaseProfileActivity extends AppCompatActivity{
@@ -59,9 +59,9 @@ public class FirebaseProfileActivity extends AppCompatActivity{
                     editor.clear();
                     editor.apply();
 
-                    Intent mainActivityReqDrug = new Intent(getApplicationContext(), MainStepperActivity.class);
-                    mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                    getApplicationContext().startActivity(mainActivityReqDrug);
+                    Intent mainStepperActivity = new Intent(getApplicationContext(), MainStepperActivity.class);
+                    mainStepperActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    getApplicationContext().startActivity(mainStepperActivity);
 
                 } catch (Exception e) {
                     Log.e("FirebaseProfileActivity", e.toString());
@@ -89,9 +89,9 @@ public class FirebaseProfileActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 try {
-                    Intent mainActivityReqDrug = new Intent(getApplicationContext(), PharmacyFormActivity.class);
-                    mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                    getApplicationContext().startActivity(mainActivityReqDrug);
+                    Intent pharmacyMainActivity = new Intent(getApplicationContext(), PharmacyMainActivity.class);
+                    pharmacyMainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    getApplicationContext().startActivity(pharmacyMainActivity);
                 } catch (Exception e) {
                     Log.e("FirebaseProfileActivity", e.toString());
                 }
@@ -104,9 +104,9 @@ public class FirebaseProfileActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 try {
-                    Intent mainActivityReqDrug = new Intent(getApplicationContext(), UpdateNotificationFirebaseDataActivity.class);
-                    mainActivityReqDrug.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                    getApplicationContext().startActivity(mainActivityReqDrug);
+                    Intent historyMainActivity = new Intent(getApplicationContext(), HistoryMainActivity.class);
+                    historyMainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    getApplicationContext().startActivity(historyMainActivity);
                 } catch (Exception e) {
                     Log.e("FirebaseProfileActivity", e.toString());
                 }
@@ -128,16 +128,14 @@ public class FirebaseProfileActivity extends AppCompatActivity{
                 int id = item.getItemId();
 
                 if (id == R.id.nav_manage_user) {
-                    fragment = new FirebaseProfileFragment();
-                } else if (id == R.id.nav_manage_user) {
                     Intent manageUserActivity = new Intent(getApplicationContext(), ManageUserActivity.class);
                     startActivity(manageUserActivity);
                 } else if(id == R.id.nav_history){
-                    Intent manageUserActivity = new Intent(getApplicationContext(), UpdateNotificationFirebaseDataActivity.class);
-                    startActivity(manageUserActivity);
+                    Intent updateNotificationFirebaseDataActivity = new Intent(getApplicationContext(), UpdateNotificationFirebaseDataActivity.class);
+                    startActivity(updateNotificationFirebaseDataActivity);
                 } else if (id == R.id.nav_send_email) {
-                    Intent manageUserActivity = new Intent(getApplicationContext(), SendEmailBackgroundActivity.class);
-                    startActivity(manageUserActivity);
+                    Intent sendEmailBackgroundActivity = new Intent(getApplicationContext(), SendEmailBackgroundActivity.class);
+                    startActivity(sendEmailBackgroundActivity);
                 } else if (id == R.id.nav_chat) {
                     Intent launchIntent = getPackageManager().getLaunchIntentForPackage("jp.naver.line.android");
                     startActivity(launchIntent);
