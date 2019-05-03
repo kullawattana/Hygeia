@@ -4,6 +4,9 @@ import com.eng.chula.se.hygeia.models.DefaultResponse;
 import com.eng.chula.se.hygeia.models.LoginResponse;
 import com.eng.chula.se.hygeia.models.UsersResponse;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
@@ -55,109 +58,118 @@ public interface Api {
     @DELETE("deleteuser/{id}")
     Call<DefaultResponse> deleteUser(@Path("id") int id);
 
+    //----------------------------------------------------------------------------------------------
     //User Register
     @FormUrlEncoded
-    @POST("registrationform")
+    @POST("registereduser")
     Call<DefaultResponse> registrationForm(
+            @Field("accountId") Integer accountId,
             @Field("password") String password,
             @Field("firstname") String firstname,
             @Field("lastname") String lastname,
             @Field("citizenId") String citizenId,
-            @Field("birthday") String birthday,
+            @Field("birthday") Date birthday,
             @Field("hometown") String hometown,
             @Field("telephoneNumber") String telephoneNumber,
             @Field("email") String email,
             @Field("contact") String contact
     );
 
-    //Drug Request
     @FormUrlEncoded
-    @POST("drugrequest")
-    Call<DefaultResponse> drugRequest(
-            @Field("requestId") String requestId,
-            @Field("topic") String topic,
-            @Field("attachment") String attachment
+    @POST("healthInfo")
+    Call<DefaultResponse> healthInfo (
+            @Field("accountId") Integer accountId,
+            @Field("weight") BigDecimal weight,
+            @Field("height") BigDecimal height,
+            @Field("diseaseList") String diseaseList,
+            @Field("allergicList") String allergicList
     );
 
-    //Pharmacy Register
     @FormUrlEncoded
-    @POST("pharmacyform")
-    Call<DefaultResponse> pharmacyForm(
+    @POST("pharmacist")
+    Call<DefaultResponse> pharmacist (
+            @Field("pharmacistId") Integer pharmacistId,
             @Field("pharmacistName") String pharmacistName,
             @Field("pharmacistSurname") String pharmacistSurname,
             @Field("pharmacistLicenseId") String pharmacistLicenseId
     );
 
-    //Pharmacy Recommendation
     @FormUrlEncoded
-    @POST("drugrecommendation")
-    Call<DefaultResponse> drugRecommendation(
-            @Field("recommendationId") String recommendationId,
-            @Field("creatorId") String creatorId,
+    @POST("drugRecRequest")
+    Call<DefaultResponse> drugRecRequest (
+            @Field("requestId") Integer requestId,
+            @Field("requesterId") Integer requesterId,
+            @Field("pharamacistId") Integer pharamacistId,
+            @Field("requestDate") Date requestDate
+    );
+
+    @FormUrlEncoded
+    @POST("drugRecommend")
+    Call<DefaultResponse> drugRecommend (
+            @Field("recommendationId") Integer recommendationId,
+            @Field("creatorId") Integer creatorId,
             @Field("creatorName") String creatorName,
-            @Field("receiverId") String receiverId,
+            @Field("receiverId") Integer receiverId,
             @Field("receiverName") String receiverName,
-            @Field("createDate") String createDate
+            @Field("createDate") Date createDate
     );
 
-    //Pharmacy Recommendation
     @FormUrlEncoded
-    @POST("drugrecommendationrequest")
-    Call<DefaultResponse> DrugRecommendationRequest(
-            @Field("requestId") String requestId,
-            @Field("requesterId") String requesterId,
-            @Field("pharamacistId") String pharamacistId,
-            @Field("requestDate") String requestDate
+    @POST("drugStore")
+    Call<DefaultResponse> drugStore (
+            @Field("storeId") Integer storeId,
+            @Field("storeName") String storeName,
+            @Field("ownerName") String ownerName,
+            @Field("licenseId") String licenseId,
+            @Field("storeLocation") String storeLocation,
+            @Field("isQualified") String isQualified
     );
 
-    //Chat Between User and Pharmarcy
     @FormUrlEncoded
-    @POST("chatmessage")
-    Call<DefaultResponse> chatMessage(
-            @Field("messageId") String messageId,
-            @Field("sendeId") String sendeId,
-            @Field("receiverId") String receiverId,
-            @Field("image") String image
-    );
-
-    //Chat Between User and Pharmarcy
-    @FormUrlEncoded
-    @POST("chatroom")
-    Call<DefaultResponse> chatRoom(
-            @Field("userId") String userId,
-            @Field("username") String username,
-            @Field("pharmacistId") String pharmacistId,
-            @Field("pharmacistName") String pharmacistName
-    );
-
-    //Pharmarcy Webboard
-    @FormUrlEncoded
-    @POST("articleboard")
-    Call<DefaultResponse> articleBoard(
-            @Field("articleId") String articleId,
+    @POST("article")
+    Call<DefaultResponse> articleBoard (
+            @Field("articleId") Integer articleId,
             @Field("articleName") String articleName,
-            @Field("writerId") String writerId,
+            @Field("writerId") Integer writerId,
             @Field("articleContent") String articleContent
     );
 
-    //Question
     @FormUrlEncoded
-    @POST("questionrequest")
-    Call<DefaultResponse> questionRequest(
-            @Field("questionId") String questionId,
+    @POST("question")
+    Call<DefaultResponse> questionBoard (
+            @Field("questionId") Integer questionId,
             @Field("textMessage") String textMessage,
-            @Field("askerAccountId") String askerAccountId,
+            @Field("askerAccountId") Integer askerAccountId,
             @Field("askerName") String askerName
     );
 
-    //Answer
     @FormUrlEncoded
-    @POST("answerrequest")
-    Call<DefaultResponse> answerRequest(
-            @Field("answerId") String answerId,
+    @POST("answer")
+    Call<DefaultResponse> answerBoard (
+            @Field("answerId") Integer answerId,
             @Field("textMessage") String textMessage,
-            @Field("questionId") String questionId,
+            @Field("questionId") Integer questionId,
+            @Field("answererAccountId") Integer answererAccountId,
             @Field("answererName") String answererName
+    );
+
+    @FormUrlEncoded
+    @POST("chatroom")
+    Call<DefaultResponse> chatroom (
+            @Field("userId") Integer userId,
+            @Field("username") String username,
+            @Field("pharmacistId") Integer pharmacistId,
+            @Field("pharmacistName") String pharmacistName
+    );
+
+    @FormUrlEncoded
+    @POST("chatmessage")
+    Call<DefaultResponse> chatmessage (
+            @Field("messageId") Integer messageId,
+            @Field("sendeId") Integer sendeId,
+            @Field("receiverId") Integer receiverId,
+            @Field("textMessage") String textMessage,
+            @Field("imageMessage") String imageMessage
     );
 
 }
