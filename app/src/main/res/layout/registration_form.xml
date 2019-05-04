@@ -35,7 +35,7 @@
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="5dp"
             android:hint="Password"
-            android:inputType="textEmailAddress" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextFirstname"
@@ -44,7 +44,7 @@
             android:drawableLeft="@drawable/ic_password"
             android:drawablePadding="5dp"
             android:hint="Firstname"
-            android:inputType="textPassword" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextLastname"
@@ -53,7 +53,7 @@
             android:drawableLeft="@drawable/ic_name"
             android:drawablePadding="5dp"
             android:hint="Lastname"
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextCitizenId"

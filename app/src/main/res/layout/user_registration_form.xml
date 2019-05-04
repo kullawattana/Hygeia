@@ -42,7 +42,7 @@
             android:drawableLeft="@drawable/ic_users"
             android:drawablePadding="5dp"
             android:hint="Firstname"
-            android:inputType="textPassword" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextLastname"
@@ -51,7 +51,7 @@
             android:drawableLeft="@drawable/ic_users"
             android:drawablePadding="5dp"
             android:hint="Lastname"
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextCitizenId"

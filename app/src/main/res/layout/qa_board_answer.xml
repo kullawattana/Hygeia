@@ -41,7 +41,7 @@
             android:drawableLeft="@drawable/ic_user_id"
             android:drawablePadding="5dp"
             android:hint="Question ID"
-            android:inputType="textPassword" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextAnswererAccountId"
@@ -50,7 +50,7 @@
             android:drawableLeft="@drawable/ic_id_key"
             android:drawablePadding="5dp"
             android:hint="Answerer Account ID "
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextAnswererName"
@@ -59,7 +59,7 @@
             android:drawableLeft="@drawable/ic_users"
             android:drawablePadding="5dp"
             android:hint="Answerer Name "
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextAnswerMessage"
@@ -67,7 +67,7 @@
             android:layout_height="252dp"
             android:drawablePadding="5dp"
             android:hint="Text Message"
-            android:inputType="textEmailAddress" />
+            android:inputType="text" />
 
     </LinearLayout>
 

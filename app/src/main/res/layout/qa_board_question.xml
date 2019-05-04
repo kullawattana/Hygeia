@@ -41,7 +41,7 @@
             android:drawableLeft="@drawable/ic_users"
             android:drawablePadding="5dp"
             android:hint="Asker Name"
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextAskerAccountId"
@@ -50,7 +50,7 @@
             android:drawableLeft="@drawable/ic_id_key"
             android:drawablePadding="5dp"
             android:hint="Asker Account ID"
-            android:inputType="textPassword" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextQuestionMessage"
@@ -58,7 +58,7 @@
             android:layout_height="252dp"
             android:drawablePadding="5dp"
             android:hint="Text Message"
-            android:inputType="textEmailAddress" />
+            android:inputType="text" />
 
     </LinearLayout>
 

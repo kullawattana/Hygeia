@@ -75,7 +75,7 @@ public interface Api {
             @Field("contact") String contact
     );
 
-    @FormUrlEncoded
+    /*@FormUrlEncoded
     @POST("healthInfo")
     Call<DefaultResponse> healthInfo (
             @Field("accountId") Integer accountId,
@@ -83,7 +83,7 @@ public interface Api {
             @Field("height") BigDecimal height,
             @Field("diseaseList") String diseaseList,
             @Field("allergicList") String allergicList
-    );
+    );*/
 
     @FormUrlEncoded
     @POST("pharmacist")
@@ -115,7 +115,7 @@ public interface Api {
     );
 
     //Google API
-    @FormUrlEncoded
+    /*@FormUrlEncoded
     @POST("drugStore")
     Call<DefaultResponse> drugStore (
             @Field("storeId") Integer storeId,
@@ -124,7 +124,7 @@ public interface Api {
             @Field("licenseId") String licenseId,
             @Field("storeLocation") String storeLocation,
             @Field("isQualified") String isQualified
-    );
+    );*/
 
     @FormUrlEncoded
     @POST("article")

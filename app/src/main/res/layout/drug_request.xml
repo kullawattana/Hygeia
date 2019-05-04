@@ -43,7 +43,7 @@
             android:drawableLeft="@drawable/ic_ui_topic"
             android:drawablePadding="5dp"
             android:hint="Topic"
-            android:inputType="textPassword" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextAttachment"
@@ -52,7 +52,7 @@
             android:drawableLeft="@drawable/ic_attachment"
             android:drawablePadding="5dp"
             android:hint="Attachment Name"
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
         <Button
             android:layout_marginTop="20dp"

@@ -42,7 +42,7 @@
             android:drawableLeft="@drawable/ic_article_name"
             android:drawablePadding="5dp"
             android:hint="Creator Name"
-            android:inputType="textPassword" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextCreatorId"
@@ -51,7 +51,7 @@
             android:drawableLeft="@drawable/ic_id_key"
             android:drawablePadding="5dp"
             android:hint="Creator ID"
-            android:inputType="textEmailAddress" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextReceiverName"

@@ -42,7 +42,7 @@
             android:drawableLeft="@drawable/ic_users"
             android:drawablePadding="5dp"
             android:hint="Pharmacist Name"
-            android:inputType="textEmailAddress" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextPharmacistSurname"
@@ -51,7 +51,7 @@
             android:drawableLeft="@drawable/ic_users"
             android:drawablePadding="5dp"
             android:hint="Pharmacist Surname"
-            android:inputType="textPassword" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/editTextPharmacistLicenseId"
@@ -60,7 +60,7 @@
             android:drawableLeft="@drawable/ic_id_key"
             android:drawablePadding="5dp"
             android:hint="Pharmacist License ID"
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
     </LinearLayout>
 
