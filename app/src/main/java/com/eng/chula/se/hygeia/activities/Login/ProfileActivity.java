@@ -10,9 +10,6 @@ import android.view.MenuItem;
 
 import com.eng.chula.se.hygeia.R;
 import com.eng.chula.se.hygeia.activities.LoginMainActivity;
-import com.eng.chula.se.hygeia.fragments.HomeFragment;
-import com.eng.chula.se.hygeia.fragments.SettingsFragment;
-import com.eng.chula.se.hygeia.fragments.UsersFragment;
 import com.eng.chula.se.hygeia.storage.SharedPrefManager;
 
 public class ProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -22,7 +19,6 @@ public class ProfileActivity extends AppCompatActivity implements BottomNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        displayFragment(new HomeFragment());
     }
 
     private void displayFragment(Fragment fragment) {
@@ -45,25 +41,10 @@ public class ProfileActivity extends AppCompatActivity implements BottomNavigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
         Fragment fragment = null;
-
-        switch(item.getItemId()){
-            case R.id.menu_home:
-                fragment = new HomeFragment();
-                break;
-            case R.id.menu_users:
-                fragment = new UsersFragment();
-                break;
-            case R.id.menu_settings:
-                fragment = new SettingsFragment();
-                break;
-        }
-
         if(fragment != null){
             displayFragment(fragment);
         }
-
         return false;
     }
 }
