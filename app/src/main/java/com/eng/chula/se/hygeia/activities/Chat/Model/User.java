@@ -2,7 +2,6 @@ package com.eng.chula.se.hygeia.activities.Chat.Model;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.VectorDrawable;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.eng.chula.se.hygeia.activities.Chat.Util;
@@ -50,7 +49,6 @@ public class User implements Serializable{
 
     public User generateUid() {
         this.uid =  String.valueOf(new Random().nextLong());
-        Log.d("TEST", uid);
         return this;
     }
 }
