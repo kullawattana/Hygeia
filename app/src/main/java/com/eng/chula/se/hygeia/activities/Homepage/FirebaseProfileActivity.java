@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import com.eng.chula.se.hygeia.R;
+import com.eng.chula.se.hygeia.activities.Chat.StartActivity;
 import com.eng.chula.se.hygeia.activities.DrugRequest.MainStepperActivity;
 import com.eng.chula.se.hygeia.activities.History.SendEmailBackgroundActivity;
 import com.eng.chula.se.hygeia.activities.History.UpdateNotificationFirebaseDataActivity;;
@@ -75,8 +76,8 @@ public class FirebaseProfileActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 try {
-                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage("jp.naver.line.android");
-                    startActivity(launchIntent);
+                    Intent sendEmailBackgroundActivity = new Intent(getApplicationContext(), StartActivity.class);
+                    startActivity(sendEmailBackgroundActivity);
                 } catch (Exception e) {
                     Log.e("FirebaseProfileActivity", e.toString());
                 }
@@ -137,8 +138,10 @@ public class FirebaseProfileActivity extends AppCompatActivity{
                     Intent sendEmailBackgroundActivity = new Intent(getApplicationContext(), SendEmailBackgroundActivity.class);
                     startActivity(sendEmailBackgroundActivity);
                 } else if (id == R.id.nav_chat) {
-                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage("jp.naver.line.android");
-                    startActivity(launchIntent);
+                    Intent sendEmailBackgroundActivity = new Intent(getApplicationContext(), StartActivity.class);
+                    startActivity(sendEmailBackgroundActivity);
+                    //Intent launchIntent = getPackageManager().getLaunchIntentForPackage("jp.naver.line.android");
+                    //startActivity(launchIntent);
                 } else if (id == R.id.nav_logout) {
                     finish();
                     System.exit(0);

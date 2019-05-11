@@ -15,13 +15,10 @@ import com.droidbyme.dialoglib.AnimUtils;
 import com.droidbyme.dialoglib.DroidDialog;
 import com.eng.chula.se.hygeia.R;
 
-import com.eng.chula.se.hygeia.activities.HistoryMainActivity;
 import com.eng.chula.se.hygeia.activities.Homepage.FirebaseProfileActivity;
 import com.eng.chula.se.hygeia.activities.LoginMainActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
-
-import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;

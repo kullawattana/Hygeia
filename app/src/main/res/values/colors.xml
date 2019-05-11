@@ -38,4 +38,9 @@
     <color name="proceed_enable_map">#72D63A</color>
     <color name="colorWhite_map">#FFFFFF</color>
     <color name="colorOrange">#F2B32A</color>
+    <color name="primaryText">#B2DFDB</color>
+    <color name="secondaryText">#757575</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="chatColorPrimaryDark">#00796b</color>
+    <color name="chatColorPrimary">#009688</color>
 </resources>

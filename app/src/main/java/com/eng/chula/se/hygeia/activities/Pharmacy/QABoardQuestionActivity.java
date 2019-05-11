@@ -1,6 +1,5 @@
 package com.eng.chula.se.hygeia.activities.Pharmacy;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,9 +16,6 @@ import com.eng.chula.se.hygeia.activities.Homepage.FirebaseProfileActivity;
 import com.eng.chula.se.hygeia.activities.LoginMainActivity;
 import com.eng.chula.se.hygeia.api.RetrofitClient;
 import com.eng.chula.se.hygeia.models.DefaultResponse;
-import com.eng.chula.se.hygeia.storage.SharedPrefManager;
-
-import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -160,31 +156,22 @@ public class QABoardQuestionActivity extends AppCompatActivity implements View.O
                 .title("All Well!")
                 .content("You has update question already to pharmacy and they have answer to you")
                 .cancelable(true, true)
-                .positiveButton("OK", new DroidDialog.onPositiveListener() {
-                    @Override
-                    public void onPositive(Dialog droidDialog) {
-                        droidDialog.dismiss();
-                        Toast.makeText(QABoardQuestionActivity.this, "YES", Toast.LENGTH_SHORT).show();
+                .positiveButton("OK", droidDialog -> {
+                    droidDialog.dismiss();
+                    Toast.makeText(QABoardQuestionActivity.this, "YES", Toast.LENGTH_SHORT).show();
 
-                        Intent historyMainActivity = new Intent(getApplicationContext(), FirebaseProfileActivity.class);
-                        historyMainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                        getApplicationContext().startActivity(historyMainActivity);
+                    Intent historyMainActivity = new Intent(getApplicationContext(), FirebaseProfileActivity.class);
+                    historyMainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    getApplicationContext().startActivity(historyMainActivity);
 
-                    }
                 })
-                .negativeButton("No", new DroidDialog.onNegativeListener() {
-                    @Override
-                    public void onNegative(Dialog droidDialog) {
-                        droidDialog.dismiss();
-                        Toast.makeText(QABoardQuestionActivity.this, "No", Toast.LENGTH_SHORT).show();
-                    }
+                .negativeButton("No", droidDialog -> {
+                    droidDialog.dismiss();
+                    Toast.makeText(QABoardQuestionActivity.this, "No", Toast.LENGTH_SHORT).show();
                 })
-                .neutralButton("SKIP", new DroidDialog.onNeutralListener() {
-                    @Override
-                    public void onNeutral(Dialog droidDialog) {
-                        droidDialog.dismiss();
-                        Toast.makeText(QABoardQuestionActivity.this, "Skip", Toast.LENGTH_SHORT).show();
-                    }
+                .neutralButton("SKIP", droidDialog -> {
+                    droidDialog.dismiss();
+                    Toast.makeText(QABoardQuestionActivity.this, "Skip", Toast.LENGTH_SHORT).show();
                 })
                 .typeface("regular.ttf")
                 .animation(AnimUtils.AnimZoomInOut)

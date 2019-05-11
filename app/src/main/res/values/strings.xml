@@ -220,4 +220,13 @@
     <string name="hello_blank_fragment_second">Hello second blank fragment</string>
     <string name="quotedesc">Welcome! Where should we deliver to?</string>
 
+    <!-- CHAT -->
+    <string name="title_activity_chat_room">Chat Room</string>
+    <string name="text_nick_hint">"Enter your name here"</string>
+    <string name="button_hint_enter_chat">Enter Chat</string>
+    <string name="title_activity_chat_list_main">ChaLitActivity</string>
+    <string name="dummy_button">Go to Chat List</string>
+    <string name="no_chat_messages">No messages here...</string>
+    <string name="loading_messages">Loading Chat Messages...</string>
+
 </resources>

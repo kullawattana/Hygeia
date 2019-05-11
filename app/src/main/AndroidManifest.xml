@@ -42,6 +42,7 @@
         android:smallScreens="false" />
 
     <application
+        android:name="com.eng.chula.se.hygeia.activities.Chat.ApplicationChat"
         android:allowBackup="true"
         android:icon="@drawable/hygeia"
         android:label="@string/app_name"
@@ -204,6 +205,15 @@
 
         <activity
             android:name="com.eng.chula.se.hygeia.activities.Pharmacy.QABoardAnswerActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name="com.eng.chula.se.hygeia.activities.Chat.ChatRoomActivity"
+            android:label="@string/title_activity_chat_room"
+            android:screenOrientation="portrait" />
+
+        <activity android:name="com.eng.chula.se.hygeia.activities.Chat.StartActivity"
             android:screenOrientation="portrait">
         </activity>
 
