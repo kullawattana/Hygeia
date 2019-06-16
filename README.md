@@ -57,3 +57,5 @@
 ![img](https://github.com/kullawattana/Hygeia/blob/master/app/src/main/res/drawable/information/slide_28.jpeg)
 
 ![img](https://github.com/kullawattana/Hygeia/blob/master/app/src/main/res/drawable/information/slide_29.jpeg)
+
+![img](https://github.com/kullawattana/Hygeia/blob/master/app/src/main/res/drawable/information/slide_30.jpeg)
